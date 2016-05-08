@@ -1,0 +1,2181 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CLASS
+    funcDef
+    id
+
+Grammar
+
+Rule 0     S' -> exp
+Rule 1     exp -> atom
+Rule 2     exp -> quoted_list
+Rule 3     exp -> call
+Rule 4     quoted_list -> QUOTE list
+Rule 5     list -> LPAREN items RPAREN
+Rule 6     items -> item items
+Rule 7     items -> empty
+Rule 8     empty -> <empty>
+Rule 9     item -> atom
+Rule 10    item -> quoted_list
+Rule 11    item -> call
+Rule 12    item -> empty
+Rule 13    call -> item MATH item
+Rule 14    call -> item Eq item
+Rule 15    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+Rule 16    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+Rule 17    call -> item LPAREN items RPAREN
+Rule 18    call -> PRINT items
+Rule 19    atom -> SIMB
+Rule 20    atom -> bool
+Rule 21    atom -> NUM
+Rule 22    atom -> MATH
+Rule 23    atom -> TEXT
+Rule 24    atom -> STRING
+Rule 25    atom -> <empty>
+Rule 26    bool -> TRUE
+Rule 27    bool -> FALSE
+Rule 28    atom -> NIL
+
+Terminals, with rules where they appear
+
+CLASS                : 
+Eq                   : 14
+FALSE                : 27
+FUNC                 : 15 16
+LCURLY               : 15 16
+LPAREN               : 5 15 16 17
+MATH                 : 13 15 16 16 22
+NIL                  : 28
+NUM                  : 21
+PRINT                : 18
+QUOTE                : 4
+RCURLY               : 15 16
+RPAREN               : 5 15 16 17
+SIMB                 : 19
+STRING               : 24
+TEXT                 : 23
+TRUE                 : 26
+error                : 
+funcDef              : 
+id                   : 
+
+Nonterminals, with rules where they appear
+
+atom                 : 1 9
+bool                 : 20
+call                 : 3 11
+empty                : 7 12
+exp                  : 0
+item                 : 6 13 13 14 14 15 15 15 16 16 16 16 17
+items                : 5 6 15 16 17 18
+list                 : 4
+quoted_list          : 2 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp
+    (1) exp -> . atom
+    (2) exp -> . quoted_list
+    (3) exp -> . call
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    $end            reduce using rule 25 (atom -> .)
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 4
+    item                           shift and go to state 16
+    bool                           shift and go to state 7
+    exp                            shift and go to state 17
+    atom                           shift and go to state 13
+    call                           shift and go to state 8
+    empty                          shift and go to state 9
+
+state 1
+
+    (23) atom -> TEXT .
+
+    MATH            reduce using rule 23 (atom -> TEXT .)
+    Eq              reduce using rule 23 (atom -> TEXT .)
+    LPAREN          reduce using rule 23 (atom -> TEXT .)
+    SIMB            reduce using rule 23 (atom -> TEXT .)
+    NUM             reduce using rule 23 (atom -> TEXT .)
+    TEXT            reduce using rule 23 (atom -> TEXT .)
+    STRING          reduce using rule 23 (atom -> TEXT .)
+    NIL             reduce using rule 23 (atom -> TEXT .)
+    QUOTE           reduce using rule 23 (atom -> TEXT .)
+    FUNC            reduce using rule 23 (atom -> TEXT .)
+    PRINT           reduce using rule 23 (atom -> TEXT .)
+    TRUE            reduce using rule 23 (atom -> TEXT .)
+    FALSE           reduce using rule 23 (atom -> TEXT .)
+    RPAREN          reduce using rule 23 (atom -> TEXT .)
+    $end            reduce using rule 23 (atom -> TEXT .)
+    RCURLY          reduce using rule 23 (atom -> TEXT .)
+
+
+state 2
+
+    (18) call -> PRINT . items
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FUNC resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    $end            reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    RPAREN          reduce using rule 8 (empty -> .)
+    RCURLY          reduce using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! $end            [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+
+    quoted_list                    shift and go to state 19
+    items                          shift and go to state 23
+    item                           shift and go to state 24
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 21
+
+state 3
+
+    (26) bool -> TRUE .
+
+    $end            reduce using rule 26 (bool -> TRUE .)
+    MATH            reduce using rule 26 (bool -> TRUE .)
+    Eq              reduce using rule 26 (bool -> TRUE .)
+    LPAREN          reduce using rule 26 (bool -> TRUE .)
+    SIMB            reduce using rule 26 (bool -> TRUE .)
+    NUM             reduce using rule 26 (bool -> TRUE .)
+    TEXT            reduce using rule 26 (bool -> TRUE .)
+    STRING          reduce using rule 26 (bool -> TRUE .)
+    NIL             reduce using rule 26 (bool -> TRUE .)
+    QUOTE           reduce using rule 26 (bool -> TRUE .)
+    FUNC            reduce using rule 26 (bool -> TRUE .)
+    PRINT           reduce using rule 26 (bool -> TRUE .)
+    TRUE            reduce using rule 26 (bool -> TRUE .)
+    FALSE           reduce using rule 26 (bool -> TRUE .)
+    RPAREN          reduce using rule 26 (bool -> TRUE .)
+    RCURLY          reduce using rule 26 (bool -> TRUE .)
+
+
+state 4
+
+    (2) exp -> quoted_list .
+    (10) item -> quoted_list .
+
+    $end            reduce using rule 2 (exp -> quoted_list .)
+    MATH            reduce using rule 10 (item -> quoted_list .)
+    Eq              reduce using rule 10 (item -> quoted_list .)
+    LPAREN          reduce using rule 10 (item -> quoted_list .)
+
+
+state 5
+
+    (4) quoted_list -> QUOTE . list
+    (5) list -> . LPAREN items RPAREN
+
+    LPAREN          shift and go to state 26
+
+    list                           shift and go to state 25
+
+state 6
+
+    (21) atom -> NUM .
+
+    MATH            reduce using rule 21 (atom -> NUM .)
+    Eq              reduce using rule 21 (atom -> NUM .)
+    LPAREN          reduce using rule 21 (atom -> NUM .)
+    SIMB            reduce using rule 21 (atom -> NUM .)
+    NUM             reduce using rule 21 (atom -> NUM .)
+    TEXT            reduce using rule 21 (atom -> NUM .)
+    STRING          reduce using rule 21 (atom -> NUM .)
+    NIL             reduce using rule 21 (atom -> NUM .)
+    QUOTE           reduce using rule 21 (atom -> NUM .)
+    FUNC            reduce using rule 21 (atom -> NUM .)
+    PRINT           reduce using rule 21 (atom -> NUM .)
+    TRUE            reduce using rule 21 (atom -> NUM .)
+    FALSE           reduce using rule 21 (atom -> NUM .)
+    RPAREN          reduce using rule 21 (atom -> NUM .)
+    $end            reduce using rule 21 (atom -> NUM .)
+    RCURLY          reduce using rule 21 (atom -> NUM .)
+
+
+state 7
+
+    (20) atom -> bool .
+
+    MATH            reduce using rule 20 (atom -> bool .)
+    Eq              reduce using rule 20 (atom -> bool .)
+    LPAREN          reduce using rule 20 (atom -> bool .)
+    SIMB            reduce using rule 20 (atom -> bool .)
+    NUM             reduce using rule 20 (atom -> bool .)
+    TEXT            reduce using rule 20 (atom -> bool .)
+    STRING          reduce using rule 20 (atom -> bool .)
+    NIL             reduce using rule 20 (atom -> bool .)
+    QUOTE           reduce using rule 20 (atom -> bool .)
+    FUNC            reduce using rule 20 (atom -> bool .)
+    PRINT           reduce using rule 20 (atom -> bool .)
+    TRUE            reduce using rule 20 (atom -> bool .)
+    FALSE           reduce using rule 20 (atom -> bool .)
+    RPAREN          reduce using rule 20 (atom -> bool .)
+    $end            reduce using rule 20 (atom -> bool .)
+    RCURLY          reduce using rule 20 (atom -> bool .)
+
+
+state 8
+
+    (3) exp -> call .
+    (11) item -> call .
+
+    $end            reduce using rule 3 (exp -> call .)
+    MATH            reduce using rule 11 (item -> call .)
+    Eq              reduce using rule 11 (item -> call .)
+    LPAREN          reduce using rule 11 (item -> call .)
+
+
+state 9
+
+    (12) item -> empty .
+
+    $end            reduce using rule 12 (item -> empty .)
+    MATH            reduce using rule 12 (item -> empty .)
+    Eq              reduce using rule 12 (item -> empty .)
+    LPAREN          reduce using rule 12 (item -> empty .)
+    SIMB            reduce using rule 12 (item -> empty .)
+    NUM             reduce using rule 12 (item -> empty .)
+    TEXT            reduce using rule 12 (item -> empty .)
+    STRING          reduce using rule 12 (item -> empty .)
+    NIL             reduce using rule 12 (item -> empty .)
+    QUOTE           reduce using rule 12 (item -> empty .)
+    FUNC            reduce using rule 12 (item -> empty .)
+    PRINT           reduce using rule 12 (item -> empty .)
+    TRUE            reduce using rule 12 (item -> empty .)
+    FALSE           reduce using rule 12 (item -> empty .)
+    RPAREN          reduce using rule 12 (item -> empty .)
+    RCURLY          reduce using rule 12 (item -> empty .)
+
+
+state 10
+
+    (24) atom -> STRING .
+
+    MATH            reduce using rule 24 (atom -> STRING .)
+    Eq              reduce using rule 24 (atom -> STRING .)
+    LPAREN          reduce using rule 24 (atom -> STRING .)
+    SIMB            reduce using rule 24 (atom -> STRING .)
+    NUM             reduce using rule 24 (atom -> STRING .)
+    TEXT            reduce using rule 24 (atom -> STRING .)
+    STRING          reduce using rule 24 (atom -> STRING .)
+    NIL             reduce using rule 24 (atom -> STRING .)
+    QUOTE           reduce using rule 24 (atom -> STRING .)
+    FUNC            reduce using rule 24 (atom -> STRING .)
+    PRINT           reduce using rule 24 (atom -> STRING .)
+    TRUE            reduce using rule 24 (atom -> STRING .)
+    FALSE           reduce using rule 24 (atom -> STRING .)
+    RPAREN          reduce using rule 24 (atom -> STRING .)
+    $end            reduce using rule 24 (atom -> STRING .)
+    RCURLY          reduce using rule 24 (atom -> STRING .)
+
+
+state 11
+
+    (19) atom -> SIMB .
+
+    MATH            reduce using rule 19 (atom -> SIMB .)
+    Eq              reduce using rule 19 (atom -> SIMB .)
+    LPAREN          reduce using rule 19 (atom -> SIMB .)
+    SIMB            reduce using rule 19 (atom -> SIMB .)
+    NUM             reduce using rule 19 (atom -> SIMB .)
+    TEXT            reduce using rule 19 (atom -> SIMB .)
+    STRING          reduce using rule 19 (atom -> SIMB .)
+    NIL             reduce using rule 19 (atom -> SIMB .)
+    QUOTE           reduce using rule 19 (atom -> SIMB .)
+    FUNC            reduce using rule 19 (atom -> SIMB .)
+    PRINT           reduce using rule 19 (atom -> SIMB .)
+    TRUE            reduce using rule 19 (atom -> SIMB .)
+    FALSE           reduce using rule 19 (atom -> SIMB .)
+    RPAREN          reduce using rule 19 (atom -> SIMB .)
+    $end            reduce using rule 19 (atom -> SIMB .)
+    RCURLY          reduce using rule 19 (atom -> SIMB .)
+
+
+state 12
+
+    (15) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    LPAREN          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 27
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 9
+
+state 13
+
+    (1) exp -> atom .
+    (9) item -> atom .
+
+    $end            reduce using rule 1 (exp -> atom .)
+    MATH            reduce using rule 9 (item -> atom .)
+    Eq              reduce using rule 9 (item -> atom .)
+    LPAREN          reduce using rule 9 (item -> atom .)
+
+
+state 14
+
+    (27) bool -> FALSE .
+
+    $end            reduce using rule 27 (bool -> FALSE .)
+    MATH            reduce using rule 27 (bool -> FALSE .)
+    Eq              reduce using rule 27 (bool -> FALSE .)
+    LPAREN          reduce using rule 27 (bool -> FALSE .)
+    SIMB            reduce using rule 27 (bool -> FALSE .)
+    NUM             reduce using rule 27 (bool -> FALSE .)
+    TEXT            reduce using rule 27 (bool -> FALSE .)
+    STRING          reduce using rule 27 (bool -> FALSE .)
+    NIL             reduce using rule 27 (bool -> FALSE .)
+    QUOTE           reduce using rule 27 (bool -> FALSE .)
+    FUNC            reduce using rule 27 (bool -> FALSE .)
+    PRINT           reduce using rule 27 (bool -> FALSE .)
+    TRUE            reduce using rule 27 (bool -> FALSE .)
+    FALSE           reduce using rule 27 (bool -> FALSE .)
+    RPAREN          reduce using rule 27 (bool -> FALSE .)
+    RCURLY          reduce using rule 27 (bool -> FALSE .)
+
+
+state 15
+
+    (28) atom -> NIL .
+
+    MATH            reduce using rule 28 (atom -> NIL .)
+    Eq              reduce using rule 28 (atom -> NIL .)
+    LPAREN          reduce using rule 28 (atom -> NIL .)
+    SIMB            reduce using rule 28 (atom -> NIL .)
+    NUM             reduce using rule 28 (atom -> NIL .)
+    TEXT            reduce using rule 28 (atom -> NIL .)
+    STRING          reduce using rule 28 (atom -> NIL .)
+    NIL             reduce using rule 28 (atom -> NIL .)
+    QUOTE           reduce using rule 28 (atom -> NIL .)
+    FUNC            reduce using rule 28 (atom -> NIL .)
+    PRINT           reduce using rule 28 (atom -> NIL .)
+    TRUE            reduce using rule 28 (atom -> NIL .)
+    FALSE           reduce using rule 28 (atom -> NIL .)
+    RPAREN          reduce using rule 28 (atom -> NIL .)
+    $end            reduce using rule 28 (atom -> NIL .)
+    RCURLY          reduce using rule 28 (atom -> NIL .)
+
+
+state 16
+
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+    MATH            shift and go to state 30
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+
+state 17
+
+    (0) S' -> exp .
+
+
+
+state 18
+
+    (22) atom -> MATH .
+
+    MATH            reduce using rule 22 (atom -> MATH .)
+    Eq              reduce using rule 22 (atom -> MATH .)
+    LPAREN          reduce using rule 22 (atom -> MATH .)
+    SIMB            reduce using rule 22 (atom -> MATH .)
+    NUM             reduce using rule 22 (atom -> MATH .)
+    TEXT            reduce using rule 22 (atom -> MATH .)
+    STRING          reduce using rule 22 (atom -> MATH .)
+    NIL             reduce using rule 22 (atom -> MATH .)
+    QUOTE           reduce using rule 22 (atom -> MATH .)
+    FUNC            reduce using rule 22 (atom -> MATH .)
+    PRINT           reduce using rule 22 (atom -> MATH .)
+    TRUE            reduce using rule 22 (atom -> MATH .)
+    FALSE           reduce using rule 22 (atom -> MATH .)
+    RPAREN          reduce using rule 22 (atom -> MATH .)
+    $end            reduce using rule 22 (atom -> MATH .)
+    RCURLY          reduce using rule 22 (atom -> MATH .)
+
+
+state 19
+
+    (10) item -> quoted_list .
+
+    MATH            reduce using rule 10 (item -> quoted_list .)
+    Eq              reduce using rule 10 (item -> quoted_list .)
+    LPAREN          reduce using rule 10 (item -> quoted_list .)
+    SIMB            reduce using rule 10 (item -> quoted_list .)
+    NUM             reduce using rule 10 (item -> quoted_list .)
+    TEXT            reduce using rule 10 (item -> quoted_list .)
+    STRING          reduce using rule 10 (item -> quoted_list .)
+    NIL             reduce using rule 10 (item -> quoted_list .)
+    QUOTE           reduce using rule 10 (item -> quoted_list .)
+    FUNC            reduce using rule 10 (item -> quoted_list .)
+    PRINT           reduce using rule 10 (item -> quoted_list .)
+    TRUE            reduce using rule 10 (item -> quoted_list .)
+    FALSE           reduce using rule 10 (item -> quoted_list .)
+    RPAREN          reduce using rule 10 (item -> quoted_list .)
+    $end            reduce using rule 10 (item -> quoted_list .)
+    RCURLY          reduce using rule 10 (item -> quoted_list .)
+
+
+state 20
+
+    (11) item -> call .
+
+    MATH            reduce using rule 11 (item -> call .)
+    Eq              reduce using rule 11 (item -> call .)
+    LPAREN          reduce using rule 11 (item -> call .)
+    SIMB            reduce using rule 11 (item -> call .)
+    NUM             reduce using rule 11 (item -> call .)
+    TEXT            reduce using rule 11 (item -> call .)
+    STRING          reduce using rule 11 (item -> call .)
+    NIL             reduce using rule 11 (item -> call .)
+    QUOTE           reduce using rule 11 (item -> call .)
+    FUNC            reduce using rule 11 (item -> call .)
+    PRINT           reduce using rule 11 (item -> call .)
+    TRUE            reduce using rule 11 (item -> call .)
+    FALSE           reduce using rule 11 (item -> call .)
+    RPAREN          reduce using rule 11 (item -> call .)
+    $end            reduce using rule 11 (item -> call .)
+    RCURLY          reduce using rule 11 (item -> call .)
+
+
+state 21
+
+    (7) items -> empty .
+    (12) item -> empty .
+
+  ! reduce/reduce conflict for MATH resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for Eq resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for SIMB resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for NUM resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for TEXT resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for STRING resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for NIL resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for FUNC resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for PRINT resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for TRUE resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for FALSE resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for $end resolved using rule 7 (items -> empty .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 7 (items -> empty .)
+    RPAREN          reduce using rule 7 (items -> empty .)
+    $end            reduce using rule 7 (items -> empty .)
+    MATH            reduce using rule 7 (items -> empty .)
+    Eq              reduce using rule 7 (items -> empty .)
+    LPAREN          reduce using rule 7 (items -> empty .)
+    SIMB            reduce using rule 7 (items -> empty .)
+    NUM             reduce using rule 7 (items -> empty .)
+    TEXT            reduce using rule 7 (items -> empty .)
+    STRING          reduce using rule 7 (items -> empty .)
+    NIL             reduce using rule 7 (items -> empty .)
+    QUOTE           reduce using rule 7 (items -> empty .)
+    FUNC            reduce using rule 7 (items -> empty .)
+    PRINT           reduce using rule 7 (items -> empty .)
+    TRUE            reduce using rule 7 (items -> empty .)
+    FALSE           reduce using rule 7 (items -> empty .)
+    RCURLY          reduce using rule 7 (items -> empty .)
+
+  ! MATH            [ reduce using rule 12 (item -> empty .) ]
+  ! Eq              [ reduce using rule 12 (item -> empty .) ]
+  ! LPAREN          [ reduce using rule 12 (item -> empty .) ]
+  ! SIMB            [ reduce using rule 12 (item -> empty .) ]
+  ! NUM             [ reduce using rule 12 (item -> empty .) ]
+  ! TEXT            [ reduce using rule 12 (item -> empty .) ]
+  ! STRING          [ reduce using rule 12 (item -> empty .) ]
+  ! NIL             [ reduce using rule 12 (item -> empty .) ]
+  ! QUOTE           [ reduce using rule 12 (item -> empty .) ]
+  ! FUNC            [ reduce using rule 12 (item -> empty .) ]
+  ! PRINT           [ reduce using rule 12 (item -> empty .) ]
+  ! TRUE            [ reduce using rule 12 (item -> empty .) ]
+  ! FALSE           [ reduce using rule 12 (item -> empty .) ]
+  ! RPAREN          [ reduce using rule 12 (item -> empty .) ]
+  ! $end            [ reduce using rule 12 (item -> empty .) ]
+  ! RCURLY          [ reduce using rule 12 (item -> empty .) ]
+
+
+state 22
+
+    (9) item -> atom .
+
+    MATH            reduce using rule 9 (item -> atom .)
+    Eq              reduce using rule 9 (item -> atom .)
+    LPAREN          reduce using rule 9 (item -> atom .)
+    SIMB            reduce using rule 9 (item -> atom .)
+    NUM             reduce using rule 9 (item -> atom .)
+    TEXT            reduce using rule 9 (item -> atom .)
+    STRING          reduce using rule 9 (item -> atom .)
+    NIL             reduce using rule 9 (item -> atom .)
+    QUOTE           reduce using rule 9 (item -> atom .)
+    FUNC            reduce using rule 9 (item -> atom .)
+    PRINT           reduce using rule 9 (item -> atom .)
+    TRUE            reduce using rule 9 (item -> atom .)
+    FALSE           reduce using rule 9 (item -> atom .)
+    RPAREN          reduce using rule 9 (item -> atom .)
+    $end            reduce using rule 9 (item -> atom .)
+    RCURLY          reduce using rule 9 (item -> atom .)
+
+
+state 23
+
+    (18) call -> PRINT items .
+
+    RCURLY          reduce using rule 18 (call -> PRINT items .)
+    MATH            reduce using rule 18 (call -> PRINT items .)
+    Eq              reduce using rule 18 (call -> PRINT items .)
+    LPAREN          reduce using rule 18 (call -> PRINT items .)
+    SIMB            reduce using rule 18 (call -> PRINT items .)
+    NUM             reduce using rule 18 (call -> PRINT items .)
+    TEXT            reduce using rule 18 (call -> PRINT items .)
+    STRING          reduce using rule 18 (call -> PRINT items .)
+    NIL             reduce using rule 18 (call -> PRINT items .)
+    QUOTE           reduce using rule 18 (call -> PRINT items .)
+    FUNC            reduce using rule 18 (call -> PRINT items .)
+    PRINT           reduce using rule 18 (call -> PRINT items .)
+    TRUE            reduce using rule 18 (call -> PRINT items .)
+    FALSE           reduce using rule 18 (call -> PRINT items .)
+    RPAREN          reduce using rule 18 (call -> PRINT items .)
+    $end            reduce using rule 18 (call -> PRINT items .)
+
+
+state 24
+
+    (6) items -> item . items
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FUNC resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    MATH            shift and go to state 32
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+    $end            reduce using rule 8 (empty -> .)
+    RPAREN          reduce using rule 8 (empty -> .)
+    RCURLY          reduce using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! Eq              [ reduce using rule 8 (empty -> .) ]
+  ! LPAREN          [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! $end            [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+
+    quoted_list                    shift and go to state 19
+    items                          shift and go to state 31
+    item                           shift and go to state 24
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 21
+
+state 25
+
+    (4) quoted_list -> QUOTE list .
+
+    $end            reduce using rule 4 (quoted_list -> QUOTE list .)
+    MATH            reduce using rule 4 (quoted_list -> QUOTE list .)
+    Eq              reduce using rule 4 (quoted_list -> QUOTE list .)
+    LPAREN          reduce using rule 4 (quoted_list -> QUOTE list .)
+    SIMB            reduce using rule 4 (quoted_list -> QUOTE list .)
+    NUM             reduce using rule 4 (quoted_list -> QUOTE list .)
+    TEXT            reduce using rule 4 (quoted_list -> QUOTE list .)
+    STRING          reduce using rule 4 (quoted_list -> QUOTE list .)
+    NIL             reduce using rule 4 (quoted_list -> QUOTE list .)
+    QUOTE           reduce using rule 4 (quoted_list -> QUOTE list .)
+    FUNC            reduce using rule 4 (quoted_list -> QUOTE list .)
+    PRINT           reduce using rule 4 (quoted_list -> QUOTE list .)
+    TRUE            reduce using rule 4 (quoted_list -> QUOTE list .)
+    FALSE           reduce using rule 4 (quoted_list -> QUOTE list .)
+    RPAREN          reduce using rule 4 (quoted_list -> QUOTE list .)
+    RCURLY          reduce using rule 4 (quoted_list -> QUOTE list .)
+
+
+state 26
+
+    (5) list -> LPAREN . items RPAREN
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FUNC resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    RPAREN          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+
+    quoted_list                    shift and go to state 19
+    items                          shift and go to state 33
+    item                           shift and go to state 24
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 21
+
+state 27
+
+    (15) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+    LPAREN          shift and go to state 34
+    MATH            shift and go to state 30
+    Eq              shift and go to state 29
+
+
+state 28
+
+    (17) call -> item LPAREN . items RPAREN
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FUNC resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    RPAREN          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+
+    quoted_list                    shift and go to state 19
+    items                          shift and go to state 35
+    item                           shift and go to state 24
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 21
+
+state 29
+
+    (14) call -> item Eq . item
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    $end            reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    RPAREN          reduce using rule 8 (empty -> .)
+    RCURLY          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! $end            [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 36
+    bool                           shift and go to state 7
+    atom                           shift and go to state 22
+    call                           shift and go to state 20
+    empty                          shift and go to state 9
+
+state 30
+
+    (13) call -> item MATH . item
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    $end            reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    RPAREN          reduce using rule 8 (empty -> .)
+    RCURLY          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! $end            [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 37
+    bool                           shift and go to state 7
+    atom                           shift and go to state 22
+    call                           shift and go to state 20
+    empty                          shift and go to state 9
+
+state 31
+
+    (6) items -> item items .
+
+    RPAREN          reduce using rule 6 (items -> item items .)
+    $end            reduce using rule 6 (items -> item items .)
+    MATH            reduce using rule 6 (items -> item items .)
+    Eq              reduce using rule 6 (items -> item items .)
+    LPAREN          reduce using rule 6 (items -> item items .)
+    SIMB            reduce using rule 6 (items -> item items .)
+    NUM             reduce using rule 6 (items -> item items .)
+    TEXT            reduce using rule 6 (items -> item items .)
+    STRING          reduce using rule 6 (items -> item items .)
+    NIL             reduce using rule 6 (items -> item items .)
+    QUOTE           reduce using rule 6 (items -> item items .)
+    FUNC            reduce using rule 6 (items -> item items .)
+    PRINT           reduce using rule 6 (items -> item items .)
+    TRUE            reduce using rule 6 (items -> item items .)
+    FALSE           reduce using rule 6 (items -> item items .)
+    RCURLY          reduce using rule 6 (items -> item items .)
+
+
+state 32
+
+    (13) call -> item MATH . item
+    (22) atom -> MATH .
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 22 (atom -> MATH .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 22 (atom -> MATH .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for FUNC resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for PRINT resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for TRUE resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for FALSE resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 22 (atom -> MATH .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 22 (atom -> MATH .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    $end            reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    RPAREN          reduce using rule 8 (empty -> .)
+    RCURLY          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! $end            [ reduce using rule 22 (atom -> MATH .) ]
+  ! MATH            [ reduce using rule 22 (atom -> MATH .) ]
+  ! Eq              [ reduce using rule 22 (atom -> MATH .) ]
+  ! LPAREN          [ reduce using rule 22 (atom -> MATH .) ]
+  ! SIMB            [ reduce using rule 22 (atom -> MATH .) ]
+  ! NUM             [ reduce using rule 22 (atom -> MATH .) ]
+  ! TEXT            [ reduce using rule 22 (atom -> MATH .) ]
+  ! STRING          [ reduce using rule 22 (atom -> MATH .) ]
+  ! NIL             [ reduce using rule 22 (atom -> MATH .) ]
+  ! QUOTE           [ reduce using rule 22 (atom -> MATH .) ]
+  ! FUNC            [ reduce using rule 22 (atom -> MATH .) ]
+  ! PRINT           [ reduce using rule 22 (atom -> MATH .) ]
+  ! TRUE            [ reduce using rule 22 (atom -> MATH .) ]
+  ! FALSE           [ reduce using rule 22 (atom -> MATH .) ]
+  ! RPAREN          [ reduce using rule 22 (atom -> MATH .) ]
+  ! RCURLY          [ reduce using rule 22 (atom -> MATH .) ]
+  ! $end            [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 37
+    bool                           shift and go to state 7
+    atom                           shift and go to state 22
+    call                           shift and go to state 20
+    empty                          shift and go to state 9
+
+state 33
+
+    (5) list -> LPAREN items . RPAREN
+
+    RPAREN          shift and go to state 38
+
+
+state 34
+
+    (15) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> item LPAREN . items RPAREN
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FUNC resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for FUNC resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    RPAREN          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+  ! SIMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! STRING          [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! FUNC            [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! SIMB            [ reduce using rule 25 (atom -> .) ]
+  ! NUM             [ reduce using rule 25 (atom -> .) ]
+  ! TEXT            [ reduce using rule 25 (atom -> .) ]
+  ! STRING          [ reduce using rule 25 (atom -> .) ]
+  ! NIL             [ reduce using rule 25 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 25 (atom -> .) ]
+  ! FUNC            [ reduce using rule 25 (atom -> .) ]
+  ! PRINT           [ reduce using rule 25 (atom -> .) ]
+  ! TRUE            [ reduce using rule 25 (atom -> .) ]
+  ! FALSE           [ reduce using rule 25 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 25 (atom -> .) ]
+
+    quoted_list                    shift and go to state 19
+    items                          shift and go to state 39
+    item                           shift and go to state 24
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 21
+
+state 35
+
+    (17) call -> item LPAREN items . RPAREN
+
+    RPAREN          shift and go to state 40
+
+
+state 36
+
+    (14) call -> item Eq item .
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    RCURLY          reduce using rule 14 (call -> item Eq item .)
+    SIMB            reduce using rule 14 (call -> item Eq item .)
+    NUM             reduce using rule 14 (call -> item Eq item .)
+    TEXT            reduce using rule 14 (call -> item Eq item .)
+    STRING          reduce using rule 14 (call -> item Eq item .)
+    NIL             reduce using rule 14 (call -> item Eq item .)
+    QUOTE           reduce using rule 14 (call -> item Eq item .)
+    FUNC            reduce using rule 14 (call -> item Eq item .)
+    PRINT           reduce using rule 14 (call -> item Eq item .)
+    TRUE            reduce using rule 14 (call -> item Eq item .)
+    FALSE           reduce using rule 14 (call -> item Eq item .)
+    RPAREN          reduce using rule 14 (call -> item Eq item .)
+    $end            reduce using rule 14 (call -> item Eq item .)
+    MATH            shift and go to state 30
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+  ! MATH            [ reduce using rule 14 (call -> item Eq item .) ]
+  ! Eq              [ reduce using rule 14 (call -> item Eq item .) ]
+  ! LPAREN          [ reduce using rule 14 (call -> item Eq item .) ]
+
+
+state 37
+
+    (13) call -> item MATH item .
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    SIMB            reduce using rule 13 (call -> item MATH item .)
+    NUM             reduce using rule 13 (call -> item MATH item .)
+    TEXT            reduce using rule 13 (call -> item MATH item .)
+    STRING          reduce using rule 13 (call -> item MATH item .)
+    NIL             reduce using rule 13 (call -> item MATH item .)
+    QUOTE           reduce using rule 13 (call -> item MATH item .)
+    FUNC            reduce using rule 13 (call -> item MATH item .)
+    PRINT           reduce using rule 13 (call -> item MATH item .)
+    TRUE            reduce using rule 13 (call -> item MATH item .)
+    FALSE           reduce using rule 13 (call -> item MATH item .)
+    RPAREN          reduce using rule 13 (call -> item MATH item .)
+    $end            reduce using rule 13 (call -> item MATH item .)
+    RCURLY          reduce using rule 13 (call -> item MATH item .)
+    MATH            shift and go to state 30
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+  ! MATH            [ reduce using rule 13 (call -> item MATH item .) ]
+  ! Eq              [ reduce using rule 13 (call -> item MATH item .) ]
+  ! LPAREN          [ reduce using rule 13 (call -> item MATH item .) ]
+
+
+state 38
+
+    (5) list -> LPAREN items RPAREN .
+
+    $end            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    MATH            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    Eq              reduce using rule 5 (list -> LPAREN items RPAREN .)
+    LPAREN          reduce using rule 5 (list -> LPAREN items RPAREN .)
+    SIMB            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    NUM             reduce using rule 5 (list -> LPAREN items RPAREN .)
+    TEXT            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    STRING          reduce using rule 5 (list -> LPAREN items RPAREN .)
+    NIL             reduce using rule 5 (list -> LPAREN items RPAREN .)
+    QUOTE           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    FUNC            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    PRINT           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    TRUE            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    FALSE           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    RPAREN          reduce using rule 5 (list -> LPAREN items RPAREN .)
+    RCURLY          reduce using rule 5 (list -> LPAREN items RPAREN .)
+
+
+state 39
+
+    (15) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item RCURLY
+    (16) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> item LPAREN items . RPAREN
+
+    RPAREN          shift and go to state 41
+
+
+state 40
+
+    (17) call -> item LPAREN items RPAREN .
+
+    RCURLY          reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    MATH            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    Eq              reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    LPAREN          reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    SIMB            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    NUM             reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    TEXT            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    STRING          reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    NIL             reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    QUOTE           reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    FUNC            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    PRINT           reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    TRUE            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    FALSE           reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    RPAREN          reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    $end            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+
+
+state 41
+
+    (15) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item MATH item RCURLY
+    (17) call -> item LPAREN items RPAREN .
+
+    LCURLY          shift and go to state 42
+    LPAREN          reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    MATH            reduce using rule 17 (call -> item LPAREN items RPAREN .)
+    Eq              reduce using rule 17 (call -> item LPAREN items RPAREN .)
+
+
+state 42
+
+    (15) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item MATH item RCURLY
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 43
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 9
+
+state 43
+
+    (15) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item MATH item RCURLY
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+    MATH            shift and go to state 44
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+
+state 44
+
+    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item MATH item RCURLY
+    (13) call -> item MATH . item
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    RCURLY          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 45
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 9
+
+state 45
+
+    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . MATH item RCURLY
+    (13) call -> item MATH item .
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    RCURLY          shift and go to state 46
+    MATH            shift and go to state 47
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+  ! MATH            [ reduce using rule 13 (call -> item MATH item .) ]
+  ! Eq              [ reduce using rule 13 (call -> item MATH item .) ]
+  ! LPAREN          [ reduce using rule 13 (call -> item MATH item .) ]
+
+
+state 46
+
+    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .
+
+    RCURLY          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    MATH            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    Eq              reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    LPAREN          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    SIMB            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    NUM             reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    TEXT            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    STRING          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    NIL             reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    QUOTE           reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    FUNC            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    PRINT           reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    TRUE            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    FALSE           reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    RPAREN          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    $end            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+
+
+state 47
+
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH . item RCURLY
+    (13) call -> item MATH . item
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (19) atom -> . SIMB
+    (20) atom -> . bool
+    (21) atom -> . NUM
+    (22) atom -> . MATH
+    (23) atom -> . TEXT
+    (24) atom -> . STRING
+    (25) atom -> .
+    (28) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (13) call -> . item MATH item
+    (14) call -> . item Eq item
+    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (17) call -> . item LPAREN items RPAREN
+    (18) call -> . PRINT items
+    (8) empty -> .
+    (26) bool -> . TRUE
+    (27) bool -> . FALSE
+
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for RCURLY resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for MATH resolved as shift
+  ! reduce/reduce conflict for Eq resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (empty -> .)
+    SIMB            shift and go to state 11
+    NUM             shift and go to state 6
+    MATH            shift and go to state 18
+    TEXT            shift and go to state 1
+    STRING          shift and go to state 10
+    NIL             shift and go to state 15
+    QUOTE           shift and go to state 5
+    FUNC            shift and go to state 12
+    PRINT           shift and go to state 2
+    RCURLY          reduce using rule 8 (empty -> .)
+    Eq              reduce using rule 8 (empty -> .)
+    LPAREN          reduce using rule 8 (empty -> .)
+    TRUE            shift and go to state 3
+    FALSE           shift and go to state 14
+
+  ! RCURLY          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 25 (atom -> .) ]
+  ! Eq              [ reduce using rule 25 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 25 (atom -> .) ]
+  ! MATH            [ reduce using rule 8 (empty -> .) ]
+
+    quoted_list                    shift and go to state 19
+    item                           shift and go to state 48
+    call                           shift and go to state 20
+    atom                           shift and go to state 22
+    bool                           shift and go to state 7
+    empty                          shift and go to state 9
+
+state 48
+
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item . RCURLY
+    (13) call -> item MATH item .
+    (13) call -> item . MATH item
+    (14) call -> item . Eq item
+    (17) call -> item . LPAREN items RPAREN
+
+  ! shift/reduce conflict for RCURLY resolved as shift
+  ! shift/reduce conflict for MATH resolved as shift
+  ! shift/reduce conflict for Eq resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    RCURLY          shift and go to state 49
+    MATH            shift and go to state 30
+    Eq              shift and go to state 29
+    LPAREN          shift and go to state 28
+
+  ! RCURLY          [ reduce using rule 13 (call -> item MATH item .) ]
+  ! MATH            [ reduce using rule 13 (call -> item MATH item .) ]
+  ! Eq              [ reduce using rule 13 (call -> item MATH item .) ]
+  ! LPAREN          [ reduce using rule 13 (call -> item MATH item .) ]
+
+
+state 49
+
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .
+
+    RCURLY          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    MATH            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    Eq              reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    LPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    SIMB            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    NUM             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    TEXT            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    STRING          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    NIL             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    QUOTE           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    FUNC            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    PRINT           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    TRUE            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    FALSE           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    RPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    $end            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MATH in state 0 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 0 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 2 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 2 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 2 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 2 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 2 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 2 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 2 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 2 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 2 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 2 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 2 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 2 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 2 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 2 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 2 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 2 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 12 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 12 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 24 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 24 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 24 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 24 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 24 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 24 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 24 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 24 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 24 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 24 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 24 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 24 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 24 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 24 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 24 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 24 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 24 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 24 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 26 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 26 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 26 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 26 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 26 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 26 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 26 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 26 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 26 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 26 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 26 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 26 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 26 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 26 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 26 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 26 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 28 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 28 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 28 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 28 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 28 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 28 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 28 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 28 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 28 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 28 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 28 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 28 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 28 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 28 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 28 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 28 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 29 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 29 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 29 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 29 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 29 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 29 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 29 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 29 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 29 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 29 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 29 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 29 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 29 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 29 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 29 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 29 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 29 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 29 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 29 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 29 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 30 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 30 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 30 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 30 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 30 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 30 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 30 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 30 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 30 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 30 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 30 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 30 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 30 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 30 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 30 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 30 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 30 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 30 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 30 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 30 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 32 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 32 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 32 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 32 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 32 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 32 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 32 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 32 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 32 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 32 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 32 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 32 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 32 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 32 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 32 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 32 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 32 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 32 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 32 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 32 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 32 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 32 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 32 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 32 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 32 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 34 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 34 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 34 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 34 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 34 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 34 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 34 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 34 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 34 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 34 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 34 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 34 resolved as shift
+WARNING: shift/reduce conflict for FUNC in state 34 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 34 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 34 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 34 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 36 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 36 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 36 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 37 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 37 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 37 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 42 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 42 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 44 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 44 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 45 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 45 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 45 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 47 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 47 resolved as shift
+WARNING: shift/reduce conflict for RCURLY in state 48 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 48 resolved as shift
+WARNING: shift/reduce conflict for Eq in state 48 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 48 resolved as shift
+WARNING: reduce/reduce conflict in state 0 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 0
+WARNING: reduce/reduce conflict in state 2 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 2
+WARNING: reduce/reduce conflict in state 12 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 12
+WARNING: reduce/reduce conflict in state 21 resolved using rule (items -> empty)
+WARNING: rejected rule (item -> empty) in state 21
+WARNING: reduce/reduce conflict in state 24 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 24
+WARNING: reduce/reduce conflict in state 26 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 26
+WARNING: reduce/reduce conflict in state 28 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 28
+WARNING: reduce/reduce conflict in state 29 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 29
+WARNING: reduce/reduce conflict in state 30 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 30
+WARNING: reduce/reduce conflict in state 32 resolved using rule (atom -> MATH)
+WARNING: rejected rule (atom -> <empty>) in state 32
+WARNING: reduce/reduce conflict in state 32 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> MATH) in state 32
+WARNING: reduce/reduce conflict in state 34 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 34
+WARNING: reduce/reduce conflict in state 42 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 42
+WARNING: reduce/reduce conflict in state 44 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 44
+WARNING: reduce/reduce conflict in state 47 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 47
