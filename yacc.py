@@ -17,8 +17,6 @@ ast = []
 class function(object):
     def f(self):
         data = {
-            'name': 'Rita',
-            '$name': lambda x: data.update({'name': x}),
             'varVals': {},
             '$varVals': lambda x: data.update({'varVals': x}),
             'varL': [],
@@ -74,7 +72,7 @@ def eval_maths(l):
         l[0] = vars[l[0]]
     if l[2] in vars:
         l[2] = vars[l[2]]
-    if isinstance(l[0], int) & isinstance(l[2], int):
+    if (isinstance(l[0], int) | isinstance(l[0], float)) & (isinstance(l[2], int) | isinstance(l[2], float)) :
         if l[1] == '+':
             return l[0] + l[2]
         if l[1] == '-':
@@ -139,6 +137,9 @@ def p_items_empty(p):
     'items : empty'
     p[0] = []
 
+#def p_item_CLFLOAT(p):
+#    'item : CLFLOAT'
+
 def p_empty(p):
     'empty :'
     pass
@@ -159,6 +160,10 @@ def p_item_call(p):
     'item : call'
     p[0] = p[1]
 
+def p_item_math(p):
+    'item : MATH'
+    p[0] = p[1]
+
 def p_item_empty(p):
     'item : empty'
     p[0] = p[1]
@@ -168,22 +173,20 @@ def p_callMath(p):
     p[0] = eval_maths([p[1], p[2], p[3]])
 
 def p_callLet(p):
-    'call : item Eq item'
+    'call : TEXT Eq item'
     vars[p[1]] = p[3]
     p[0] = p[3]
 
 def p_list(p):
     'call : LBrack items RBrack'
-    print 'saw list'
-    print p[2]
+    #print 'saw list'
+    #print p[2]
     p[0] = p[2]
 
 def p_defFunc(p):
     '''call : FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
             | FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-            | FUNC item LPAREN items RPAREN LCURLY items RCURLY
     '''
-    #print 'matched defFunc'
     functions[p[2]] = function()
     a = {}
     b = []
@@ -193,17 +196,9 @@ def p_defFunc(p):
         b.append(i)
     functions[p[2]].run('$varVals')(a)
     functions[p[2]].run('$varL')(b)
-    if len(p) == 11:
         #c = [p[7], p[8], p[9]]
-        c = p[7 : 10]
-    if len(p) == 13:
-        c = p[7 : 12]
+    c = p[7 : len(p) - 1]
     functions[p[2]].run('$equation')(c)
-    #print functions[p[2]].run('equation')
-    #if len(p) == 13:
-    #    functions[p[2]]['function'] = [p[7], p[8], p[9], p[10], p[11]]
-    #print functions[p[2]]
-    #functions[p[2]]['VarVars'] = (functions[p[2]]['vars'].keys())
     p[0] = p[2]
 
 def p_callFunc(p):
@@ -254,6 +249,10 @@ def p_atom_bool(p):
 def p_atom_num(p):
     'atom : NUM'
     p[0] = p[1]
+
+def p_atom_FLOAT(p):
+    'atom : NUM DOT NUM'
+    p[0] = float(str(p[1]) + str(p[2]) + str(p[3]))
 
 def p_atom_math(p):
     'atom : MATH'

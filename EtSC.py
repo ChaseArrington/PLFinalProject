@@ -16,7 +16,13 @@ for i in content:
 lines.append(s)
 print lines
 for i in lines:
-    print yacc.parse(i)
+    result = yacc.parse(i)
+    if isinstance(result, str):
+        if result[len(result) - 2] + result[len(result) - 1] == '**':
+            #print result[0 : len(result) - 2]
+            result = yacc.parse(result[0 : len(result) - 2])
+    if result != None:
+        print (result)
 
 #result = yacc.parse(content)
 #.print result

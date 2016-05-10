@@ -8,7 +8,7 @@ import ply.lex as lex
 
 # List of token names.   
 tokens = ('QUOTE', 'SIMB', 'NUM', 'LPAREN', 'RPAREN', \
-'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef', 'LBrack', 'RBrack',)
+'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef', 'LBrack', 'RBrack', 'DOT')
 
 # Reserved words
 reserved = {
@@ -31,6 +31,8 @@ t_Eq = r'\='
 t_LCURLY = r'{'
 t_RCURLY = r'}'
 t_STRING = r'\'[a-zA-Z]+\''
+t_DOT = r'\.'
+#t_CLFLOAT = r'[0-9]+[\.][0-9]+'
 
 #def t_funcDef(t):
 #    r'\{.\}'
