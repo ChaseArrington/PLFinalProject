@@ -8,7 +8,7 @@ import ply.lex as lex
 
 # List of token names.   
 tokens = ('QUOTE', 'SIMB', 'NUM', 'LPAREN', 'RPAREN', \
-'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef')
+'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef', 'LBrack', 'RBrack',)
 
 # Reserved words
 reserved = {
@@ -21,6 +21,8 @@ reserved = {
 # Regular expression rules for simple tokens
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_LBrack = r'\['
+t_RBrack = r'\]'
 t_QUOTE = r'\''
 t_TRUE = r'\#t'
 t_FALSE = r'\#f'
@@ -38,7 +40,7 @@ t_STRING = r'\'[a-zA-Z]+\''
 
 def t_NUM(t):
     r'\d+'
-    print 'found', t
+    #print 'found', t
     try:
         t.value = int(t.value)    
     except ValueError:
@@ -60,7 +62,7 @@ def t_TEXT(t):
     #r'\'[ -~]+\''
     #r'\'[a-zA-Z0-9_+\*\- :,]*\''
     t.type = reserved.get(t.value,'TEXT')    # Check for reserved words
-    print 'found', t
+    #print 'found', t
     return t
 
 # Define a rule so we can track line numbers

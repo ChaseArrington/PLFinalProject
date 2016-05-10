@@ -11,7 +11,7 @@ class Cobra(cmd.Cmd):     # See https://docs.python.org/2/library/cmd.html
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = ">>> "
-        self.intro  = "UniverseB"
+        self.intro  = "CobraCmdLine"
 
     def do_exit(self, args):
         """Exits from the console"""
@@ -34,11 +34,16 @@ class Cobra(cmd.Cmd):     # See https://docs.python.org/2/library/cmd.html
            In that case we execute the line as Python code.
         """
         result = yacc.parse(line)
+        if isinstance(result, str):
+            if result[len(result) - 2] + result[len(result) - 1] == '**':
+                #print result[0 : len(result) - 2]
+                result = yacc.parse(result[0 : len(result) - 2])
         #print "AST is: ", result
         #import lis
         #r =  lis.eval(result)
         #if r is not None: print r
-        print (result)
+        if result != None:
+            print (result)
         '''
         s = lisp_str(result)
         if s != 'nil':

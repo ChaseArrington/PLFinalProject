@@ -14,6 +14,28 @@ functions = {}
 global ast
 ast = []
 
+class function(object):
+    def f(self):
+        data = {
+            'name': 'Rita',
+            '$name': lambda x: data.update({'name': x}),
+            'varVals': {},
+            '$varVals': lambda x: data.update({'varVals': x}),
+            'varL': [],
+            '$varL': lambda x: data.update({'varL': x}),
+            'equation': ['a', '+', 'b'],
+            '$equation': lambda x: data.update({'equation': x}),
+        }
+        def cf(self, d):
+            if d in data:
+                return data[d]
+            else:
+                return None
+        return cf
+    run = f(1)
+
+s1 = function()
+
 
 def _print(l):
     print lisp_str(l[0])
@@ -91,28 +113,27 @@ def p_exp_atom(p):
     'exp : atom'
     p[0] = p[1]
 
-def p_exp_qlist(p):
-    'exp : quoted_list'
-    p[0] = p[1]
+#def p_exp_qlist(p):
+#    'exp : quoted_list'
+#    p[0] = p[1]
 
 def p_exp_call(p):
     'exp : call'
     p[0] = p[1]
 
-def p_quoted_list(p):
-    'quoted_list : QUOTE list'
-    #p[0] = p[2]
-    p[0] = ["quote"] + [p[2]]
+#def p_quoted_list(p):
+#    'quoted_list : QUOTE list'
+#    #p[0] = p[2]
+#    p[0] = ["quote"] + [p[2]]
 
-def p_list(p):
-    'list : LPAREN items RPAREN'
-    p[0] = p[2]
+
 
 def p_items(p):
-    'items : item items'
-    print p[1], p[2]
+    '''items : item items
+    '''
+    #print p[1], p[2]
     p[0] = [p[1]] + p[2]
-    print p[0]
+    #print p[0]
 
 def p_items_empty(p):
     'items : empty'
@@ -126,13 +147,13 @@ def p_item_atom(p):
     'item : atom'
     p[0] = p[1]
 
-def p_item_list(p):
-    'item : list'
-    p[0] = p[1]
+#def p_item_list(p):
+#    'item : list'
+#    p[0] = p[1]
 
-def p_item_list(p):
-    'item : quoted_list'
-    p[0] = p[1]
+#def p_item_qlist(p):
+#    'item : quoted_list'
+#    p[0] = p[1]
 
 def p_item_call(p):
     'item : call'
@@ -151,38 +172,62 @@ def p_callLet(p):
     vars[p[1]] = p[3]
     p[0] = p[3]
 
+def p_list(p):
+    'call : LBrack items RBrack'
+    print 'saw list'
+    print p[2]
+    p[0] = p[2]
+
 def p_defFunc(p):
     '''call : FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
             | FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+            | FUNC item LPAREN items RPAREN LCURLY items RCURLY
     '''
-    print 'matched defFunc'
-    functions[p[2]] = {}
-    functions[p[2]]['VarVars'] = []
-    functions[p[2]]['vars'] = {}
+    #print 'matched defFunc'
+    functions[p[2]] = function()
+    a = {}
+    b = []
+    c = []
     for i in p[4]:
-        functions[p[2]]['vars'][i] = 0
-        functions[p[2]]['VarVars'].append(i)
+        a[i] = 0
+        b.append(i)
+    functions[p[2]].run('$varVals')(a)
+    functions[p[2]].run('$varL')(b)
     if len(p) == 11:
-        functions[p[2]]['function'] = [p[7], p[8], p[9]]
+        #c = [p[7], p[8], p[9]]
+        c = p[7 : 10]
     if len(p) == 13:
-        functions[p[2]]['function'] = [p[7], p[8], p[9], p[10], p[11]]
-    print functions[p[2]]
+        c = p[7 : 12]
+    functions[p[2]].run('$equation')(c)
+    #print functions[p[2]].run('equation')
+    #if len(p) == 13:
+    #    functions[p[2]]['function'] = [p[7], p[8], p[9], p[10], p[11]]
+    #print functions[p[2]]
     #functions[p[2]]['VarVars'] = (functions[p[2]]['vars'].keys())
     p[0] = p[2]
 
 def p_callFunc(p):
     'call : item LPAREN items RPAREN'
     if p[1] in functions:
-        print 'calling', p[1], 'with', p[3]
-        mathList = []
+        #print 'calling', p[1], 'with', p[3]
+        funString = ''
+        a = functions[p[1]].run('varVals')
+        #print a
+        b = functions[p[1]].run('varL')
+        #print b
+        c = functions[p[1]].run('equation')
+        #print c
         for i in range (0, len(p[3])):
-            functions[p[1]]['vars'][functions[p[1]]['VarVars'][i]] = p[3][i]
-        print functions[p[1]]['vars']
-        for i in functions[p[1]]['function']:
-            if i in functions[p[1]]['vars']:
-                i = functions[p[1]]['vars'][i]
-            mathList.append(i)
-        p[0] = eval_maths(mathList)
+            a[b[i]] = p[3][i]
+
+        #print c
+        for i in c:
+            if i in a:
+                i = a[i]
+            funString += str(i)
+        #print funString
+        funString += '**'
+        p[0] = funString
     else:
         print 'nope nope nope'
 
@@ -197,9 +242,10 @@ def p_print(p):
     print s
 
 
-def p_atom_simbol(p):
-    'atom : SIMB'
-    p[0] = p[1]
+
+#def p_atom_simbol(p):
+#    'atom : SIMB'
+#    p[0] = p[1]
 
 def p_atom_bool(p):
     'atom : bool'
