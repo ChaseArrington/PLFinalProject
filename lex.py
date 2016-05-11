@@ -8,7 +8,7 @@ import ply.lex as lex
 
 # List of token names.   
 tokens = ('QUOTE', 'SIMB', 'NUM', 'LPAREN', 'RPAREN', \
-'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef', 'LBrack', 'RBrack', 'DOT')
+'NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'id', 'CLASS', 'LCURLY', 'RCURLY', 'FUNC', 'PRINT', 'STRING', 'funcDef', 'LBrack', 'RBrack', 'DOT', 'EXEC')
 
 # Reserved words
 reserved = {
@@ -16,6 +16,7 @@ reserved = {
     'Class' : 'CLASS',
     'def' : 'FUNC',
     'print' : 'PRINT',
+    'exec' : 'EXEC',
 }
 
 # Regular expression rules for simple tokens
@@ -23,14 +24,14 @@ t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LBrack = r'\['
 t_RBrack = r'\]'
-t_QUOTE = r'\''
+#t_QUOTE = r'\''
 t_TRUE = r'\#t'
 t_FALSE = r'\#f'
 t_MATH = r'[\+\-\/\*]'
 t_Eq = r'\='
 t_LCURLY = r'{'
 t_RCURLY = r'}'
-t_STRING = r'\'[a-zA-Z]+\''
+t_STRING = r'\'[a-zA-Z ]+\''
 t_DOT = r'\.'
 #t_CLFLOAT = r'[0-9]+[\.][0-9]+'
 

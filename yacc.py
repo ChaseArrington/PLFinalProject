@@ -32,7 +32,7 @@ class function(object):
         return cf
     run = f(1)
 
-s1 = function()
+#s1 = function()
 
 
 def _print(l):
@@ -186,6 +186,7 @@ def p_list(p):
 def p_defFunc(p):
     '''call : FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
             | FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+            | FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
     '''
     functions[p[2]] = function()
     a = {}
@@ -196,7 +197,6 @@ def p_defFunc(p):
         b.append(i)
     functions[p[2]].run('$varVals')(a)
     functions[p[2]].run('$varL')(b)
-        #c = [p[7], p[8], p[9]]
     c = p[7 : len(p) - 1]
     functions[p[2]].run('$equation')(c)
     p[0] = p[2]
@@ -204,23 +204,16 @@ def p_defFunc(p):
 def p_callFunc(p):
     'call : item LPAREN items RPAREN'
     if p[1] in functions:
-        #print 'calling', p[1], 'with', p[3]
         funString = ''
         a = functions[p[1]].run('varVals')
-        #print a
         b = functions[p[1]].run('varL')
-        #print b
         c = functions[p[1]].run('equation')
-        #print c
         for i in range (0, len(p[3])):
             a[b[i]] = p[3][i]
-
-        #print c
         for i in c:
             if i in a:
                 i = a[i]
             funString += str(i)
-        #print funString
         funString += '**'
         p[0] = funString
     else:
@@ -236,6 +229,16 @@ def p_print(p):
         s += str(i)
     print s
 
+def p_exec(p):
+    'item : EXEC items'
+    from java.lang import Math
+    s = ''
+    for i in p[2]:
+        i = str(i)
+        i = i.replace('[', '(')
+        i = i.replace(']', ')')
+        s += str(i)
+    p[0] = eval(compile(s, 'None', 'single'))
 
 
 #def p_atom_simbol(p):
@@ -264,6 +267,10 @@ def p_atom_word(p):
 
 def p_atom_str(p):
     'atom : STRING'
+    p[0] = p[1]
+
+def p_atom_dot(p):
+    'atom : DOT'
     p[0] = p[1]
 
 def p_atom_empty(p):
