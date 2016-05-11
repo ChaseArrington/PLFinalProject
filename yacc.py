@@ -111,34 +111,18 @@ def p_exp_atom(p):
     'exp : atom'
     p[0] = p[1]
 
-#def p_exp_qlist(p):
-#    'exp : quoted_list'
-#    p[0] = p[1]
-
 def p_exp_call(p):
     'exp : call'
     p[0] = p[1]
 
-#def p_quoted_list(p):
-#    'quoted_list : QUOTE list'
-#    #p[0] = p[2]
-#    p[0] = ["quote"] + [p[2]]
-
-
-
 def p_items(p):
-    '''items : item items
-    '''
-    #print p[1], p[2]
+    'items : item items'
     p[0] = [p[1]] + p[2]
-    #print p[0]
 
 def p_items_empty(p):
     'items : empty'
     p[0] = []
 
-#def p_item_CLFLOAT(p):
-#    'item : CLFLOAT'
 
 def p_empty(p):
     'empty :'
@@ -147,14 +131,6 @@ def p_empty(p):
 def p_item_atom(p):
     'item : atom'
     p[0] = p[1]
-
-#def p_item_list(p):
-#    'item : list'
-#    p[0] = p[1]
-
-#def p_item_qlist(p):
-#    'item : quoted_list'
-#    p[0] = p[1]
 
 def p_item_call(p):
     'item : call'
@@ -179,8 +155,6 @@ def p_callLet(p):
 
 def p_list(p):
     'call : LBrack items RBrack'
-    #print 'saw list'
-    #print p[2]
     p[0] = p[2]
 
 def p_defFunc(p):
@@ -220,6 +194,7 @@ def p_callFunc(p):
         print 'nope nope nope'
 
 
+
 def p_print(p):
     'call : PRINT items'
     s = ''
@@ -228,6 +203,11 @@ def p_print(p):
             i = vars[i]
         s += str(i)
     print s
+
+def p_printLine(p):
+    'call : PRINTLINE STATEMENT'
+    s = p[2]
+    print '\n' + s[1:]
 
 def p_exec(p):
     'item : EXEC items'
@@ -241,9 +221,9 @@ def p_exec(p):
     p[0] = eval(compile(s, 'None', 'single'))
 
 
-#def p_atom_simbol(p):
-#    'atom : SIMB'
-#    p[0] = p[1]
+def p_date(p):
+    'item : DATE'
+    p[0] = p[1]
 
 def p_atom_bool(p):
     'atom : bool'

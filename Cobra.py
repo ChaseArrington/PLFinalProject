@@ -38,17 +38,11 @@ class Cobra(cmd.Cmd):     # See https://docs.python.org/2/library/cmd.html
             if result[len(result) - 2] + result[len(result) - 1] == '**':
                 #print result[0 : len(result) - 2]
                 result = yacc.parse(result[0 : len(result) - 2])
-        #print "AST is: ", result
-        #import lis
-        #r =  lis.eval(result)
-        #if r is not None: print r
+
         if result != None:
             print (result)
-        '''
-        s = lisp_str(result)
-        if s != 'nil':
-            print s
-        '''
+
+
 
 if __name__ == '__main__':
         ml = Cobra()

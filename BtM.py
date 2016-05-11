@@ -2,14 +2,16 @@ from yacc import yacc, lisp_str
 import cmd
 
 
-with open('testfile.txt', 'r') as content_file:
+with open('testerfile.txt', 'r') as content_file:
     content = content_file.read()
 #print content
 s = ''
 lines = []
 for i in content:
+    #print i
     if i == '\n':
         lines.append(s)
+        #print s
         s = ''
     else:
         s += i
@@ -24,5 +26,5 @@ for i in lines:
     if result != None:
         print (result)
 
-#result = yacc.parse(content)
-#.print result
+        #result = yacc.parse(content)
+        #.print result
