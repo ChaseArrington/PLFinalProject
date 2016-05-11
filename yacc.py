@@ -40,32 +40,6 @@ def _print(l):
 
 name['print'] = _print
 
-#  Evaluation functions
-
-#def lisp_eval(simb, items):
-#    if simb in name:
-#        return call(name[simb], eval_lists(items))
-#    else:
-#        return [simb] + items
-
-#def call(f, l):
-#    try:
-#        return f(eval_lists(l))
-#    except TypeError:
-#        return f
-
-#def eval_lists(l):
-#    r = []
-#    for i in l:
-#        if is_list(i):
-#            if i:
-#                r.append(lisp_eval(i[0], i[1:]))
-#            else:
-#                r.append(i)
-#        else:
-#            r.append(i)
-#    return r
-
 # Utilities functions
 def eval_maths(l):
     if l[0] in vars:

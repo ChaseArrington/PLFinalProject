@@ -41,7 +41,9 @@ class Cobra(cmd.Cmd):     # See https://docs.python.org/2/library/cmd.html
 
         if result != None:
             print (result)
-
+##### BugList
+### using exec and java streams returns "None" rather, though it does function
+### trying to condense item Math item returns a list 'invalid'
 
 
 if __name__ == '__main__':
