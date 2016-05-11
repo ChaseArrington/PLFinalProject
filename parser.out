@@ -16,63 +16,67 @@ Rule 10    call -> item MATH item
 Rule 11    call -> TEXT Eq item
 Rule 12    call -> SELECT ALL item
 Rule 13    call -> SELECT NUM NUM NUM NUM item
-Rule 14    call -> LBrack items RBrack
-Rule 15    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-Rule 16    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-Rule 17    call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-Rule 18    call -> item LPAREN items RPAREN
-Rule 19    call -> PRINT items
-Rule 20    call -> PRINTLINE STATEMENT
-Rule 21    item -> EXEC items
-Rule 22    item -> DATE
-Rule 23    atom -> bool
-Rule 24    atom -> NUM
-Rule 25    atom -> NUM DOT NUM
-Rule 26    atom -> MATH
-Rule 27    atom -> TEXT
-Rule 28    atom -> STRING
-Rule 29    atom -> DOT
-Rule 30    atom -> <empty>
-Rule 31    bool -> TRUE
-Rule 32    bool -> FALSE
-Rule 33    atom -> NIL
+Rule 14    call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+Rule 15    call -> LBrack items RBrack
+Rule 16    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+Rule 17    call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+Rule 18    call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+Rule 19    call -> item LPAREN items RPAREN
+Rule 20    call -> PRINT items
+Rule 21    call -> PRINTLINE STATEMENT
+Rule 22    item -> EXEC items
+Rule 23    item -> DATE
+Rule 24    atom -> bool
+Rule 25    atom -> NUM
+Rule 26    atom -> NUM DOT NUM
+Rule 27    atom -> MATH
+Rule 28    atom -> TEXT
+Rule 29    atom -> STRING
+Rule 30    atom -> DOT
+Rule 31    atom -> <empty>
+Rule 32    bool -> TRUE
+Rule 33    bool -> FALSE
+Rule 34    atom -> NIL
 
 Terminals, with rules where they appear
 
 ALL                  : 12
-DATE                 : 22
-DOT                  : 25 29
-EXEC                 : 17 21
+AND                  : 14
+DATE                 : 23
+DOT                  : 26 30
+EXEC                 : 18 22
 Eq                   : 11
-FALSE                : 32
-FUNC                 : 15 16 17
-LBrack               : 14
-LCURLY               : 15 16 17
-LPAREN               : 15 16 17 18
-MATH                 : 8 10 15 16 16 26
-NIL                  : 33
-NUM                  : 13 13 13 13 24 25 25
-PRINT                : 19
-PRINTLINE            : 20
-RBrack               : 14
-RCURLY               : 15 16 17
-RPAREN               : 15 16 17 18
-SELECT               : 12 13
-STATEMENT            : 20
-STRING               : 28
-TEXT                 : 11 27
-TRUE                 : 31
+FALSE                : 33
+FUNC                 : 16 17 18
+GREAT                : 14
+LBrack               : 15
+LCURLY               : 16 17 18
+LESS                 : 14
+LPAREN               : 16 17 18 19
+MATH                 : 8 10 16 17 17 27
+NIL                  : 34
+NUM                  : 13 13 13 13 14 14 14 14 14 14 14 14 25 26 26
+PRINT                : 20
+PRINTLINE            : 21
+RBrack               : 15
+RCURLY               : 16 17 18
+RPAREN               : 16 17 18 19
+SELECT               : 12 13 14
+STATEMENT            : 21
+STRING               : 29
+TEXT                 : 11 28
+TRUE                 : 32
 error                : 
 
 Nonterminals, with rules where they appear
 
 atom                 : 1 6
-bool                 : 23
+bool                 : 24
 call                 : 2 7
 empty                : 4 9
 exp                  : 0
-item                 : 3 10 10 11 12 13 15 15 15 16 16 16 16 17 18
-items                : 3 14 15 16 17 17 18 19 21
+item                 : 3 10 10 11 12 13 14 16 16 16 17 17 17 17 18 19
+items                : 3 15 16 17 18 18 19 20 22
 
 Parsing method: LALR
 
@@ -81,34 +85,35 @@ state 0
     (0) S' -> . exp
     (1) exp -> . atom
     (2) exp -> . call
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
 
   ! shift/reduce conflict for MATH resolved as shift
@@ -119,7 +124,7 @@ state 0
     TEXT            shift and go to state 4
     STRING          shift and go to state 19
     DOT             shift and go to state 11
-    $end            reduce using rule 30 (atom -> .)
+    $end            reduce using rule 31 (atom -> .)
     NIL             shift and go to state 16
     SELECT          shift and go to state 14
     LBrack          shift and go to state 5
@@ -132,8 +137,8 @@ state 0
     DATE            shift and go to state 18
     LPAREN          reduce using rule 5 (empty -> .)
 
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
 
     item                           shift and go to state 8
@@ -145,38 +150,39 @@ state 0
 
 state 1
 
-    (19) call -> PRINT . items
+    (20) call -> PRINT . items
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -249,26 +255,26 @@ state 1
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -279,99 +285,100 @@ state 1
 
 state 2
 
-    (23) atom -> bool .
+    (24) atom -> bool .
 
-    LPAREN          reduce using rule 23 (atom -> bool .)
-    MATH            reduce using rule 23 (atom -> bool .)
-    $end            reduce using rule 23 (atom -> bool .)
-    EXEC            reduce using rule 23 (atom -> bool .)
-    DATE            reduce using rule 23 (atom -> bool .)
-    NUM             reduce using rule 23 (atom -> bool .)
-    TEXT            reduce using rule 23 (atom -> bool .)
-    STRING          reduce using rule 23 (atom -> bool .)
-    DOT             reduce using rule 23 (atom -> bool .)
-    NIL             reduce using rule 23 (atom -> bool .)
-    SELECT          reduce using rule 23 (atom -> bool .)
-    LBrack          reduce using rule 23 (atom -> bool .)
-    FUNC            reduce using rule 23 (atom -> bool .)
-    PRINT           reduce using rule 23 (atom -> bool .)
-    PRINTLINE       reduce using rule 23 (atom -> bool .)
-    TRUE            reduce using rule 23 (atom -> bool .)
-    FALSE           reduce using rule 23 (atom -> bool .)
-    RBrack          reduce using rule 23 (atom -> bool .)
-    RPAREN          reduce using rule 23 (atom -> bool .)
-    RCURLY          reduce using rule 23 (atom -> bool .)
+    LPAREN          reduce using rule 24 (atom -> bool .)
+    MATH            reduce using rule 24 (atom -> bool .)
+    $end            reduce using rule 24 (atom -> bool .)
+    EXEC            reduce using rule 24 (atom -> bool .)
+    DATE            reduce using rule 24 (atom -> bool .)
+    NUM             reduce using rule 24 (atom -> bool .)
+    TEXT            reduce using rule 24 (atom -> bool .)
+    STRING          reduce using rule 24 (atom -> bool .)
+    DOT             reduce using rule 24 (atom -> bool .)
+    NIL             reduce using rule 24 (atom -> bool .)
+    SELECT          reduce using rule 24 (atom -> bool .)
+    LBrack          reduce using rule 24 (atom -> bool .)
+    FUNC            reduce using rule 24 (atom -> bool .)
+    PRINT           reduce using rule 24 (atom -> bool .)
+    PRINTLINE       reduce using rule 24 (atom -> bool .)
+    TRUE            reduce using rule 24 (atom -> bool .)
+    FALSE           reduce using rule 24 (atom -> bool .)
+    RBrack          reduce using rule 24 (atom -> bool .)
+    RPAREN          reduce using rule 24 (atom -> bool .)
+    RCURLY          reduce using rule 24 (atom -> bool .)
 
 
 state 3
 
-    (20) call -> PRINTLINE . STATEMENT
+    (21) call -> PRINTLINE . STATEMENT
 
     STATEMENT       shift and go to state 28
 
 
 state 4
 
-    (27) atom -> TEXT .
+    (28) atom -> TEXT .
     (11) call -> TEXT . Eq item
 
-    LPAREN          reduce using rule 27 (atom -> TEXT .)
-    MATH            reduce using rule 27 (atom -> TEXT .)
-    $end            reduce using rule 27 (atom -> TEXT .)
-    EXEC            reduce using rule 27 (atom -> TEXT .)
-    DATE            reduce using rule 27 (atom -> TEXT .)
-    NUM             reduce using rule 27 (atom -> TEXT .)
-    TEXT            reduce using rule 27 (atom -> TEXT .)
-    STRING          reduce using rule 27 (atom -> TEXT .)
-    DOT             reduce using rule 27 (atom -> TEXT .)
-    NIL             reduce using rule 27 (atom -> TEXT .)
-    SELECT          reduce using rule 27 (atom -> TEXT .)
-    LBrack          reduce using rule 27 (atom -> TEXT .)
-    FUNC            reduce using rule 27 (atom -> TEXT .)
-    PRINT           reduce using rule 27 (atom -> TEXT .)
-    PRINTLINE       reduce using rule 27 (atom -> TEXT .)
-    TRUE            reduce using rule 27 (atom -> TEXT .)
-    FALSE           reduce using rule 27 (atom -> TEXT .)
-    RBrack          reduce using rule 27 (atom -> TEXT .)
-    RPAREN          reduce using rule 27 (atom -> TEXT .)
-    RCURLY          reduce using rule 27 (atom -> TEXT .)
+    LPAREN          reduce using rule 28 (atom -> TEXT .)
+    MATH            reduce using rule 28 (atom -> TEXT .)
+    $end            reduce using rule 28 (atom -> TEXT .)
+    EXEC            reduce using rule 28 (atom -> TEXT .)
+    DATE            reduce using rule 28 (atom -> TEXT .)
+    NUM             reduce using rule 28 (atom -> TEXT .)
+    TEXT            reduce using rule 28 (atom -> TEXT .)
+    STRING          reduce using rule 28 (atom -> TEXT .)
+    DOT             reduce using rule 28 (atom -> TEXT .)
+    NIL             reduce using rule 28 (atom -> TEXT .)
+    SELECT          reduce using rule 28 (atom -> TEXT .)
+    LBrack          reduce using rule 28 (atom -> TEXT .)
+    FUNC            reduce using rule 28 (atom -> TEXT .)
+    PRINT           reduce using rule 28 (atom -> TEXT .)
+    PRINTLINE       reduce using rule 28 (atom -> TEXT .)
+    TRUE            reduce using rule 28 (atom -> TEXT .)
+    FALSE           reduce using rule 28 (atom -> TEXT .)
+    RBrack          reduce using rule 28 (atom -> TEXT .)
+    RPAREN          reduce using rule 28 (atom -> TEXT .)
+    RCURLY          reduce using rule 28 (atom -> TEXT .)
     Eq              shift and go to state 29
 
 
 state 5
 
-    (14) call -> LBrack . items RBrack
+    (15) call -> LBrack . items RBrack
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -438,23 +445,23 @@ state 5
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -498,7 +505,7 @@ state 7
 state 8
 
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
     MATH            shift and go to state 32
     LPAREN          shift and go to state 31
@@ -506,38 +513,39 @@ state 8
 
 state 9
 
-    (15) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> FUNC . item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (16) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> FUNC . item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> FUNC . item LPAREN items RPAREN LCURLY EXEC items RCURLY
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! reduce/reduce conflict for LPAREN resolved using rule 5 (empty -> .)
@@ -559,8 +567,8 @@ state 9
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
 
     item                           shift and go to state 33
@@ -571,105 +579,106 @@ state 9
 
 state 10
 
-    (24) atom -> NUM .
-    (25) atom -> NUM . DOT NUM
+    (25) atom -> NUM .
+    (26) atom -> NUM . DOT NUM
 
   ! shift/reduce conflict for DOT resolved as shift
-    LPAREN          reduce using rule 24 (atom -> NUM .)
-    MATH            reduce using rule 24 (atom -> NUM .)
-    $end            reduce using rule 24 (atom -> NUM .)
-    EXEC            reduce using rule 24 (atom -> NUM .)
-    DATE            reduce using rule 24 (atom -> NUM .)
-    NUM             reduce using rule 24 (atom -> NUM .)
-    TEXT            reduce using rule 24 (atom -> NUM .)
-    STRING          reduce using rule 24 (atom -> NUM .)
-    NIL             reduce using rule 24 (atom -> NUM .)
-    SELECT          reduce using rule 24 (atom -> NUM .)
-    LBrack          reduce using rule 24 (atom -> NUM .)
-    FUNC            reduce using rule 24 (atom -> NUM .)
-    PRINT           reduce using rule 24 (atom -> NUM .)
-    PRINTLINE       reduce using rule 24 (atom -> NUM .)
-    TRUE            reduce using rule 24 (atom -> NUM .)
-    FALSE           reduce using rule 24 (atom -> NUM .)
-    RBrack          reduce using rule 24 (atom -> NUM .)
-    RPAREN          reduce using rule 24 (atom -> NUM .)
-    RCURLY          reduce using rule 24 (atom -> NUM .)
+    LPAREN          reduce using rule 25 (atom -> NUM .)
+    MATH            reduce using rule 25 (atom -> NUM .)
+    $end            reduce using rule 25 (atom -> NUM .)
+    EXEC            reduce using rule 25 (atom -> NUM .)
+    DATE            reduce using rule 25 (atom -> NUM .)
+    NUM             reduce using rule 25 (atom -> NUM .)
+    TEXT            reduce using rule 25 (atom -> NUM .)
+    STRING          reduce using rule 25 (atom -> NUM .)
+    NIL             reduce using rule 25 (atom -> NUM .)
+    SELECT          reduce using rule 25 (atom -> NUM .)
+    LBrack          reduce using rule 25 (atom -> NUM .)
+    FUNC            reduce using rule 25 (atom -> NUM .)
+    PRINT           reduce using rule 25 (atom -> NUM .)
+    PRINTLINE       reduce using rule 25 (atom -> NUM .)
+    TRUE            reduce using rule 25 (atom -> NUM .)
+    FALSE           reduce using rule 25 (atom -> NUM .)
+    RBrack          reduce using rule 25 (atom -> NUM .)
+    RPAREN          reduce using rule 25 (atom -> NUM .)
+    RCURLY          reduce using rule 25 (atom -> NUM .)
     DOT             shift and go to state 34
 
-  ! DOT             [ reduce using rule 24 (atom -> NUM .) ]
+  ! DOT             [ reduce using rule 25 (atom -> NUM .) ]
 
 
 state 11
 
-    (29) atom -> DOT .
+    (30) atom -> DOT .
 
-    LPAREN          reduce using rule 29 (atom -> DOT .)
-    MATH            reduce using rule 29 (atom -> DOT .)
-    $end            reduce using rule 29 (atom -> DOT .)
-    EXEC            reduce using rule 29 (atom -> DOT .)
-    DATE            reduce using rule 29 (atom -> DOT .)
-    NUM             reduce using rule 29 (atom -> DOT .)
-    TEXT            reduce using rule 29 (atom -> DOT .)
-    STRING          reduce using rule 29 (atom -> DOT .)
-    DOT             reduce using rule 29 (atom -> DOT .)
-    NIL             reduce using rule 29 (atom -> DOT .)
-    SELECT          reduce using rule 29 (atom -> DOT .)
-    LBrack          reduce using rule 29 (atom -> DOT .)
-    FUNC            reduce using rule 29 (atom -> DOT .)
-    PRINT           reduce using rule 29 (atom -> DOT .)
-    PRINTLINE       reduce using rule 29 (atom -> DOT .)
-    TRUE            reduce using rule 29 (atom -> DOT .)
-    FALSE           reduce using rule 29 (atom -> DOT .)
-    RBrack          reduce using rule 29 (atom -> DOT .)
-    RPAREN          reduce using rule 29 (atom -> DOT .)
-    RCURLY          reduce using rule 29 (atom -> DOT .)
+    LPAREN          reduce using rule 30 (atom -> DOT .)
+    MATH            reduce using rule 30 (atom -> DOT .)
+    $end            reduce using rule 30 (atom -> DOT .)
+    EXEC            reduce using rule 30 (atom -> DOT .)
+    DATE            reduce using rule 30 (atom -> DOT .)
+    NUM             reduce using rule 30 (atom -> DOT .)
+    TEXT            reduce using rule 30 (atom -> DOT .)
+    STRING          reduce using rule 30 (atom -> DOT .)
+    DOT             reduce using rule 30 (atom -> DOT .)
+    NIL             reduce using rule 30 (atom -> DOT .)
+    SELECT          reduce using rule 30 (atom -> DOT .)
+    LBrack          reduce using rule 30 (atom -> DOT .)
+    FUNC            reduce using rule 30 (atom -> DOT .)
+    PRINT           reduce using rule 30 (atom -> DOT .)
+    PRINTLINE       reduce using rule 30 (atom -> DOT .)
+    TRUE            reduce using rule 30 (atom -> DOT .)
+    FALSE           reduce using rule 30 (atom -> DOT .)
+    RBrack          reduce using rule 30 (atom -> DOT .)
+    RPAREN          reduce using rule 30 (atom -> DOT .)
+    RCURLY          reduce using rule 30 (atom -> DOT .)
 
 
 state 12
 
-    (31) bool -> TRUE .
+    (32) bool -> TRUE .
 
-    MATH            reduce using rule 31 (bool -> TRUE .)
-    LPAREN          reduce using rule 31 (bool -> TRUE .)
-    $end            reduce using rule 31 (bool -> TRUE .)
-    RCURLY          reduce using rule 31 (bool -> TRUE .)
-    EXEC            reduce using rule 31 (bool -> TRUE .)
-    DATE            reduce using rule 31 (bool -> TRUE .)
-    NUM             reduce using rule 31 (bool -> TRUE .)
-    TEXT            reduce using rule 31 (bool -> TRUE .)
-    STRING          reduce using rule 31 (bool -> TRUE .)
-    DOT             reduce using rule 31 (bool -> TRUE .)
-    NIL             reduce using rule 31 (bool -> TRUE .)
-    SELECT          reduce using rule 31 (bool -> TRUE .)
-    LBrack          reduce using rule 31 (bool -> TRUE .)
-    FUNC            reduce using rule 31 (bool -> TRUE .)
-    PRINT           reduce using rule 31 (bool -> TRUE .)
-    PRINTLINE       reduce using rule 31 (bool -> TRUE .)
-    TRUE            reduce using rule 31 (bool -> TRUE .)
-    FALSE           reduce using rule 31 (bool -> TRUE .)
-    RBrack          reduce using rule 31 (bool -> TRUE .)
-    RPAREN          reduce using rule 31 (bool -> TRUE .)
+    MATH            reduce using rule 32 (bool -> TRUE .)
+    LPAREN          reduce using rule 32 (bool -> TRUE .)
+    $end            reduce using rule 32 (bool -> TRUE .)
+    RCURLY          reduce using rule 32 (bool -> TRUE .)
+    EXEC            reduce using rule 32 (bool -> TRUE .)
+    DATE            reduce using rule 32 (bool -> TRUE .)
+    NUM             reduce using rule 32 (bool -> TRUE .)
+    TEXT            reduce using rule 32 (bool -> TRUE .)
+    STRING          reduce using rule 32 (bool -> TRUE .)
+    DOT             reduce using rule 32 (bool -> TRUE .)
+    NIL             reduce using rule 32 (bool -> TRUE .)
+    SELECT          reduce using rule 32 (bool -> TRUE .)
+    LBrack          reduce using rule 32 (bool -> TRUE .)
+    FUNC            reduce using rule 32 (bool -> TRUE .)
+    PRINT           reduce using rule 32 (bool -> TRUE .)
+    PRINTLINE       reduce using rule 32 (bool -> TRUE .)
+    TRUE            reduce using rule 32 (bool -> TRUE .)
+    FALSE           reduce using rule 32 (bool -> TRUE .)
+    RBrack          reduce using rule 32 (bool -> TRUE .)
+    RPAREN          reduce using rule 32 (bool -> TRUE .)
 
 
 state 13
 
-    (26) atom -> MATH .
+    (27) atom -> MATH .
     (8) item -> MATH .
 
   ! reduce/reduce conflict for MATH resolved using rule 8 (item -> MATH .)
   ! reduce/reduce conflict for LPAREN resolved using rule 8 (item -> MATH .)
-    $end            reduce using rule 26 (atom -> MATH .)
+    $end            reduce using rule 27 (atom -> MATH .)
     MATH            reduce using rule 8 (item -> MATH .)
     LPAREN          reduce using rule 8 (item -> MATH .)
 
-  ! MATH            [ reduce using rule 26 (atom -> MATH .) ]
-  ! LPAREN          [ reduce using rule 26 (atom -> MATH .) ]
+  ! MATH            [ reduce using rule 27 (atom -> MATH .) ]
+  ! LPAREN          [ reduce using rule 27 (atom -> MATH .) ]
 
 
 state 14
 
     (12) call -> SELECT . ALL item
     (13) call -> SELECT . NUM NUM NUM NUM item
+    (14) call -> SELECT . NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
 
     ALL             shift and go to state 35
     NUM             shift and go to state 36
@@ -687,64 +696,65 @@ state 15
 
 state 16
 
-    (33) atom -> NIL .
+    (34) atom -> NIL .
 
-    LPAREN          reduce using rule 33 (atom -> NIL .)
-    MATH            reduce using rule 33 (atom -> NIL .)
-    $end            reduce using rule 33 (atom -> NIL .)
-    EXEC            reduce using rule 33 (atom -> NIL .)
-    DATE            reduce using rule 33 (atom -> NIL .)
-    NUM             reduce using rule 33 (atom -> NIL .)
-    TEXT            reduce using rule 33 (atom -> NIL .)
-    STRING          reduce using rule 33 (atom -> NIL .)
-    DOT             reduce using rule 33 (atom -> NIL .)
-    NIL             reduce using rule 33 (atom -> NIL .)
-    SELECT          reduce using rule 33 (atom -> NIL .)
-    LBrack          reduce using rule 33 (atom -> NIL .)
-    FUNC            reduce using rule 33 (atom -> NIL .)
-    PRINT           reduce using rule 33 (atom -> NIL .)
-    PRINTLINE       reduce using rule 33 (atom -> NIL .)
-    TRUE            reduce using rule 33 (atom -> NIL .)
-    FALSE           reduce using rule 33 (atom -> NIL .)
-    RBrack          reduce using rule 33 (atom -> NIL .)
-    RPAREN          reduce using rule 33 (atom -> NIL .)
-    RCURLY          reduce using rule 33 (atom -> NIL .)
+    LPAREN          reduce using rule 34 (atom -> NIL .)
+    MATH            reduce using rule 34 (atom -> NIL .)
+    $end            reduce using rule 34 (atom -> NIL .)
+    EXEC            reduce using rule 34 (atom -> NIL .)
+    DATE            reduce using rule 34 (atom -> NIL .)
+    NUM             reduce using rule 34 (atom -> NIL .)
+    TEXT            reduce using rule 34 (atom -> NIL .)
+    STRING          reduce using rule 34 (atom -> NIL .)
+    DOT             reduce using rule 34 (atom -> NIL .)
+    NIL             reduce using rule 34 (atom -> NIL .)
+    SELECT          reduce using rule 34 (atom -> NIL .)
+    LBrack          reduce using rule 34 (atom -> NIL .)
+    FUNC            reduce using rule 34 (atom -> NIL .)
+    PRINT           reduce using rule 34 (atom -> NIL .)
+    PRINTLINE       reduce using rule 34 (atom -> NIL .)
+    TRUE            reduce using rule 34 (atom -> NIL .)
+    FALSE           reduce using rule 34 (atom -> NIL .)
+    RBrack          reduce using rule 34 (atom -> NIL .)
+    RPAREN          reduce using rule 34 (atom -> NIL .)
+    RCURLY          reduce using rule 34 (atom -> NIL .)
 
 
 state 17
 
-    (21) item -> EXEC . items
+    (22) item -> EXEC . items
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -817,26 +827,26 @@ state 17
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -847,80 +857,80 @@ state 17
 
 state 18
 
-    (22) item -> DATE .
+    (23) item -> DATE .
 
-    RCURLY          reduce using rule 22 (item -> DATE .)
-    MATH            reduce using rule 22 (item -> DATE .)
-    LPAREN          reduce using rule 22 (item -> DATE .)
-    EXEC            reduce using rule 22 (item -> DATE .)
-    DATE            reduce using rule 22 (item -> DATE .)
-    NUM             reduce using rule 22 (item -> DATE .)
-    TEXT            reduce using rule 22 (item -> DATE .)
-    STRING          reduce using rule 22 (item -> DATE .)
-    DOT             reduce using rule 22 (item -> DATE .)
-    NIL             reduce using rule 22 (item -> DATE .)
-    SELECT          reduce using rule 22 (item -> DATE .)
-    LBrack          reduce using rule 22 (item -> DATE .)
-    FUNC            reduce using rule 22 (item -> DATE .)
-    PRINT           reduce using rule 22 (item -> DATE .)
-    PRINTLINE       reduce using rule 22 (item -> DATE .)
-    TRUE            reduce using rule 22 (item -> DATE .)
-    FALSE           reduce using rule 22 (item -> DATE .)
-    $end            reduce using rule 22 (item -> DATE .)
-    RBrack          reduce using rule 22 (item -> DATE .)
-    RPAREN          reduce using rule 22 (item -> DATE .)
+    RCURLY          reduce using rule 23 (item -> DATE .)
+    MATH            reduce using rule 23 (item -> DATE .)
+    LPAREN          reduce using rule 23 (item -> DATE .)
+    EXEC            reduce using rule 23 (item -> DATE .)
+    DATE            reduce using rule 23 (item -> DATE .)
+    NUM             reduce using rule 23 (item -> DATE .)
+    TEXT            reduce using rule 23 (item -> DATE .)
+    STRING          reduce using rule 23 (item -> DATE .)
+    DOT             reduce using rule 23 (item -> DATE .)
+    NIL             reduce using rule 23 (item -> DATE .)
+    SELECT          reduce using rule 23 (item -> DATE .)
+    LBrack          reduce using rule 23 (item -> DATE .)
+    FUNC            reduce using rule 23 (item -> DATE .)
+    PRINT           reduce using rule 23 (item -> DATE .)
+    PRINTLINE       reduce using rule 23 (item -> DATE .)
+    TRUE            reduce using rule 23 (item -> DATE .)
+    FALSE           reduce using rule 23 (item -> DATE .)
+    $end            reduce using rule 23 (item -> DATE .)
+    RBrack          reduce using rule 23 (item -> DATE .)
+    RPAREN          reduce using rule 23 (item -> DATE .)
 
 
 state 19
 
-    (28) atom -> STRING .
+    (29) atom -> STRING .
 
-    LPAREN          reduce using rule 28 (atom -> STRING .)
-    MATH            reduce using rule 28 (atom -> STRING .)
-    $end            reduce using rule 28 (atom -> STRING .)
-    EXEC            reduce using rule 28 (atom -> STRING .)
-    DATE            reduce using rule 28 (atom -> STRING .)
-    NUM             reduce using rule 28 (atom -> STRING .)
-    TEXT            reduce using rule 28 (atom -> STRING .)
-    STRING          reduce using rule 28 (atom -> STRING .)
-    DOT             reduce using rule 28 (atom -> STRING .)
-    NIL             reduce using rule 28 (atom -> STRING .)
-    SELECT          reduce using rule 28 (atom -> STRING .)
-    LBrack          reduce using rule 28 (atom -> STRING .)
-    FUNC            reduce using rule 28 (atom -> STRING .)
-    PRINT           reduce using rule 28 (atom -> STRING .)
-    PRINTLINE       reduce using rule 28 (atom -> STRING .)
-    TRUE            reduce using rule 28 (atom -> STRING .)
-    FALSE           reduce using rule 28 (atom -> STRING .)
-    RBrack          reduce using rule 28 (atom -> STRING .)
-    RPAREN          reduce using rule 28 (atom -> STRING .)
-    RCURLY          reduce using rule 28 (atom -> STRING .)
+    LPAREN          reduce using rule 29 (atom -> STRING .)
+    MATH            reduce using rule 29 (atom -> STRING .)
+    $end            reduce using rule 29 (atom -> STRING .)
+    EXEC            reduce using rule 29 (atom -> STRING .)
+    DATE            reduce using rule 29 (atom -> STRING .)
+    NUM             reduce using rule 29 (atom -> STRING .)
+    TEXT            reduce using rule 29 (atom -> STRING .)
+    STRING          reduce using rule 29 (atom -> STRING .)
+    DOT             reduce using rule 29 (atom -> STRING .)
+    NIL             reduce using rule 29 (atom -> STRING .)
+    SELECT          reduce using rule 29 (atom -> STRING .)
+    LBrack          reduce using rule 29 (atom -> STRING .)
+    FUNC            reduce using rule 29 (atom -> STRING .)
+    PRINT           reduce using rule 29 (atom -> STRING .)
+    PRINTLINE       reduce using rule 29 (atom -> STRING .)
+    TRUE            reduce using rule 29 (atom -> STRING .)
+    FALSE           reduce using rule 29 (atom -> STRING .)
+    RBrack          reduce using rule 29 (atom -> STRING .)
+    RPAREN          reduce using rule 29 (atom -> STRING .)
+    RCURLY          reduce using rule 29 (atom -> STRING .)
 
 
 state 20
 
-    (32) bool -> FALSE .
+    (33) bool -> FALSE .
 
-    MATH            reduce using rule 32 (bool -> FALSE .)
-    LPAREN          reduce using rule 32 (bool -> FALSE .)
-    $end            reduce using rule 32 (bool -> FALSE .)
-    RCURLY          reduce using rule 32 (bool -> FALSE .)
-    EXEC            reduce using rule 32 (bool -> FALSE .)
-    DATE            reduce using rule 32 (bool -> FALSE .)
-    NUM             reduce using rule 32 (bool -> FALSE .)
-    TEXT            reduce using rule 32 (bool -> FALSE .)
-    STRING          reduce using rule 32 (bool -> FALSE .)
-    DOT             reduce using rule 32 (bool -> FALSE .)
-    NIL             reduce using rule 32 (bool -> FALSE .)
-    SELECT          reduce using rule 32 (bool -> FALSE .)
-    LBrack          reduce using rule 32 (bool -> FALSE .)
-    FUNC            reduce using rule 32 (bool -> FALSE .)
-    PRINT           reduce using rule 32 (bool -> FALSE .)
-    PRINTLINE       reduce using rule 32 (bool -> FALSE .)
-    TRUE            reduce using rule 32 (bool -> FALSE .)
-    FALSE           reduce using rule 32 (bool -> FALSE .)
-    RBrack          reduce using rule 32 (bool -> FALSE .)
-    RPAREN          reduce using rule 32 (bool -> FALSE .)
+    MATH            reduce using rule 33 (bool -> FALSE .)
+    LPAREN          reduce using rule 33 (bool -> FALSE .)
+    $end            reduce using rule 33 (bool -> FALSE .)
+    RCURLY          reduce using rule 33 (bool -> FALSE .)
+    EXEC            reduce using rule 33 (bool -> FALSE .)
+    DATE            reduce using rule 33 (bool -> FALSE .)
+    NUM             reduce using rule 33 (bool -> FALSE .)
+    TEXT            reduce using rule 33 (bool -> FALSE .)
+    STRING          reduce using rule 33 (bool -> FALSE .)
+    DOT             reduce using rule 33 (bool -> FALSE .)
+    NIL             reduce using rule 33 (bool -> FALSE .)
+    SELECT          reduce using rule 33 (bool -> FALSE .)
+    LBrack          reduce using rule 33 (bool -> FALSE .)
+    FUNC            reduce using rule 33 (bool -> FALSE .)
+    PRINT           reduce using rule 33 (bool -> FALSE .)
+    PRINTLINE       reduce using rule 33 (bool -> FALSE .)
+    TRUE            reduce using rule 33 (bool -> FALSE .)
+    FALSE           reduce using rule 33 (bool -> FALSE .)
+    RBrack          reduce using rule 33 (bool -> FALSE .)
+    RPAREN          reduce using rule 33 (bool -> FALSE .)
 
 
 state 21
@@ -1005,38 +1015,39 @@ state 23
 
     (3) items -> item . items
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
@@ -1111,26 +1122,26 @@ state 23
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -1142,7 +1153,7 @@ state 23
 state 24
 
     (8) item -> MATH .
-    (26) atom -> MATH .
+    (27) atom -> MATH .
 
   ! reduce/reduce conflict for LPAREN resolved using rule 8 (item -> MATH .)
   ! reduce/reduce conflict for MATH resolved using rule 8 (item -> MATH .)
@@ -1185,26 +1196,26 @@ state 24
     RBrack          reduce using rule 8 (item -> MATH .)
     RPAREN          reduce using rule 8 (item -> MATH .)
 
-  ! LPAREN          [ reduce using rule 26 (atom -> MATH .) ]
-  ! MATH            [ reduce using rule 26 (atom -> MATH .) ]
-  ! $end            [ reduce using rule 26 (atom -> MATH .) ]
-  ! EXEC            [ reduce using rule 26 (atom -> MATH .) ]
-  ! DATE            [ reduce using rule 26 (atom -> MATH .) ]
-  ! NUM             [ reduce using rule 26 (atom -> MATH .) ]
-  ! TEXT            [ reduce using rule 26 (atom -> MATH .) ]
-  ! STRING          [ reduce using rule 26 (atom -> MATH .) ]
-  ! DOT             [ reduce using rule 26 (atom -> MATH .) ]
-  ! NIL             [ reduce using rule 26 (atom -> MATH .) ]
-  ! SELECT          [ reduce using rule 26 (atom -> MATH .) ]
-  ! LBrack          [ reduce using rule 26 (atom -> MATH .) ]
-  ! FUNC            [ reduce using rule 26 (atom -> MATH .) ]
-  ! PRINT           [ reduce using rule 26 (atom -> MATH .) ]
-  ! PRINTLINE       [ reduce using rule 26 (atom -> MATH .) ]
-  ! TRUE            [ reduce using rule 26 (atom -> MATH .) ]
-  ! FALSE           [ reduce using rule 26 (atom -> MATH .) ]
-  ! RBrack          [ reduce using rule 26 (atom -> MATH .) ]
-  ! RPAREN          [ reduce using rule 26 (atom -> MATH .) ]
-  ! RCURLY          [ reduce using rule 26 (atom -> MATH .) ]
+  ! LPAREN          [ reduce using rule 27 (atom -> MATH .) ]
+  ! MATH            [ reduce using rule 27 (atom -> MATH .) ]
+  ! $end            [ reduce using rule 27 (atom -> MATH .) ]
+  ! EXEC            [ reduce using rule 27 (atom -> MATH .) ]
+  ! DATE            [ reduce using rule 27 (atom -> MATH .) ]
+  ! NUM             [ reduce using rule 27 (atom -> MATH .) ]
+  ! TEXT            [ reduce using rule 27 (atom -> MATH .) ]
+  ! STRING          [ reduce using rule 27 (atom -> MATH .) ]
+  ! DOT             [ reduce using rule 27 (atom -> MATH .) ]
+  ! NIL             [ reduce using rule 27 (atom -> MATH .) ]
+  ! SELECT          [ reduce using rule 27 (atom -> MATH .) ]
+  ! LBrack          [ reduce using rule 27 (atom -> MATH .) ]
+  ! FUNC            [ reduce using rule 27 (atom -> MATH .) ]
+  ! PRINT           [ reduce using rule 27 (atom -> MATH .) ]
+  ! PRINTLINE       [ reduce using rule 27 (atom -> MATH .) ]
+  ! TRUE            [ reduce using rule 27 (atom -> MATH .) ]
+  ! FALSE           [ reduce using rule 27 (atom -> MATH .) ]
+  ! RBrack          [ reduce using rule 27 (atom -> MATH .) ]
+  ! RPAREN          [ reduce using rule 27 (atom -> MATH .) ]
+  ! RCURLY          [ reduce using rule 27 (atom -> MATH .) ]
 
 
 state 25
@@ -1261,54 +1272,54 @@ state 26
 
 state 27
 
-    (19) call -> PRINT items .
+    (20) call -> PRINT items .
 
-    $end            reduce using rule 19 (call -> PRINT items .)
-    MATH            reduce using rule 19 (call -> PRINT items .)
-    LPAREN          reduce using rule 19 (call -> PRINT items .)
-    EXEC            reduce using rule 19 (call -> PRINT items .)
-    DATE            reduce using rule 19 (call -> PRINT items .)
-    NUM             reduce using rule 19 (call -> PRINT items .)
-    TEXT            reduce using rule 19 (call -> PRINT items .)
-    STRING          reduce using rule 19 (call -> PRINT items .)
-    DOT             reduce using rule 19 (call -> PRINT items .)
-    NIL             reduce using rule 19 (call -> PRINT items .)
-    SELECT          reduce using rule 19 (call -> PRINT items .)
-    LBrack          reduce using rule 19 (call -> PRINT items .)
-    FUNC            reduce using rule 19 (call -> PRINT items .)
-    PRINT           reduce using rule 19 (call -> PRINT items .)
-    PRINTLINE       reduce using rule 19 (call -> PRINT items .)
-    TRUE            reduce using rule 19 (call -> PRINT items .)
-    FALSE           reduce using rule 19 (call -> PRINT items .)
-    RBrack          reduce using rule 19 (call -> PRINT items .)
-    RPAREN          reduce using rule 19 (call -> PRINT items .)
-    RCURLY          reduce using rule 19 (call -> PRINT items .)
+    $end            reduce using rule 20 (call -> PRINT items .)
+    MATH            reduce using rule 20 (call -> PRINT items .)
+    LPAREN          reduce using rule 20 (call -> PRINT items .)
+    EXEC            reduce using rule 20 (call -> PRINT items .)
+    DATE            reduce using rule 20 (call -> PRINT items .)
+    NUM             reduce using rule 20 (call -> PRINT items .)
+    TEXT            reduce using rule 20 (call -> PRINT items .)
+    STRING          reduce using rule 20 (call -> PRINT items .)
+    DOT             reduce using rule 20 (call -> PRINT items .)
+    NIL             reduce using rule 20 (call -> PRINT items .)
+    SELECT          reduce using rule 20 (call -> PRINT items .)
+    LBrack          reduce using rule 20 (call -> PRINT items .)
+    FUNC            reduce using rule 20 (call -> PRINT items .)
+    PRINT           reduce using rule 20 (call -> PRINT items .)
+    PRINTLINE       reduce using rule 20 (call -> PRINT items .)
+    TRUE            reduce using rule 20 (call -> PRINT items .)
+    FALSE           reduce using rule 20 (call -> PRINT items .)
+    RBrack          reduce using rule 20 (call -> PRINT items .)
+    RPAREN          reduce using rule 20 (call -> PRINT items .)
+    RCURLY          reduce using rule 20 (call -> PRINT items .)
 
 
 state 28
 
-    (20) call -> PRINTLINE STATEMENT .
+    (21) call -> PRINTLINE STATEMENT .
 
-    $end            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    MATH            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    LPAREN          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    EXEC            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    DATE            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    NUM             reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    TEXT            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    STRING          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    DOT             reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    NIL             reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    SELECT          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    LBrack          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    FUNC            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    PRINT           reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    PRINTLINE       reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    TRUE            reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    FALSE           reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    RBrack          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    RPAREN          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
-    RCURLY          reduce using rule 20 (call -> PRINTLINE STATEMENT .)
+    $end            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    MATH            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    LPAREN          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    EXEC            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    DATE            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    NUM             reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    TEXT            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    STRING          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    DOT             reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    NIL             reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    SELECT          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    LBrack          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    FUNC            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    PRINT           reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    PRINTLINE       reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    TRUE            reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    FALSE           reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    RBrack          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    RPAREN          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
+    RCURLY          reduce using rule 21 (call -> PRINTLINE STATEMENT .)
 
 
 state 29
@@ -1318,31 +1329,32 @@ state 29
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -1400,26 +1412,26 @@ state 29
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
   ! EXEC            [ reduce using rule 5 (empty -> .) ]
   ! DATE            [ reduce using rule 5 (empty -> .) ]
@@ -1444,45 +1456,46 @@ state 29
 
 state 30
 
-    (14) call -> LBrack items . RBrack
+    (15) call -> LBrack items . RBrack
 
     RBrack          shift and go to state 41
 
 
 state 31
 
-    (18) call -> item LPAREN . items RPAREN
+    (19) call -> item LPAREN . items RPAREN
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -1549,23 +1562,23 @@ state 31
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -1581,31 +1594,32 @@ state 32
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -1663,26 +1677,26 @@ state 32
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
   ! EXEC            [ reduce using rule 5 (empty -> .) ]
   ! DATE            [ reduce using rule 5 (empty -> .) ]
@@ -1707,11 +1721,11 @@ state 32
 
 state 33
 
-    (15) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> FUNC item . LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (16) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> FUNC item . LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> FUNC item . LPAREN items RPAREN LCURLY EXEC items RCURLY
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
     LPAREN          shift and go to state 44
     MATH            shift and go to state 32
@@ -1719,7 +1733,7 @@ state 33
 
 state 34
 
-    (25) atom -> NUM DOT . NUM
+    (26) atom -> NUM DOT . NUM
 
     NUM             shift and go to state 45
 
@@ -1731,31 +1745,32 @@ state 35
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -1813,26 +1828,26 @@ state 35
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
   ! EXEC            [ reduce using rule 5 (empty -> .) ]
   ! DATE            [ reduce using rule 5 (empty -> .) ]
@@ -1858,70 +1873,72 @@ state 35
 state 36
 
     (13) call -> SELECT NUM . NUM NUM NUM item
+    (14) call -> SELECT NUM . NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
 
     NUM             shift and go to state 47
 
 
 state 37
 
-    (21) item -> EXEC items .
+    (22) item -> EXEC items .
 
-    RCURLY          reduce using rule 21 (item -> EXEC items .)
-    MATH            reduce using rule 21 (item -> EXEC items .)
-    LPAREN          reduce using rule 21 (item -> EXEC items .)
-    EXEC            reduce using rule 21 (item -> EXEC items .)
-    DATE            reduce using rule 21 (item -> EXEC items .)
-    NUM             reduce using rule 21 (item -> EXEC items .)
-    TEXT            reduce using rule 21 (item -> EXEC items .)
-    STRING          reduce using rule 21 (item -> EXEC items .)
-    DOT             reduce using rule 21 (item -> EXEC items .)
-    NIL             reduce using rule 21 (item -> EXEC items .)
-    SELECT          reduce using rule 21 (item -> EXEC items .)
-    LBrack          reduce using rule 21 (item -> EXEC items .)
-    FUNC            reduce using rule 21 (item -> EXEC items .)
-    PRINT           reduce using rule 21 (item -> EXEC items .)
-    PRINTLINE       reduce using rule 21 (item -> EXEC items .)
-    TRUE            reduce using rule 21 (item -> EXEC items .)
-    FALSE           reduce using rule 21 (item -> EXEC items .)
-    $end            reduce using rule 21 (item -> EXEC items .)
-    RBrack          reduce using rule 21 (item -> EXEC items .)
-    RPAREN          reduce using rule 21 (item -> EXEC items .)
+    RCURLY          reduce using rule 22 (item -> EXEC items .)
+    MATH            reduce using rule 22 (item -> EXEC items .)
+    LPAREN          reduce using rule 22 (item -> EXEC items .)
+    EXEC            reduce using rule 22 (item -> EXEC items .)
+    DATE            reduce using rule 22 (item -> EXEC items .)
+    NUM             reduce using rule 22 (item -> EXEC items .)
+    TEXT            reduce using rule 22 (item -> EXEC items .)
+    STRING          reduce using rule 22 (item -> EXEC items .)
+    DOT             reduce using rule 22 (item -> EXEC items .)
+    NIL             reduce using rule 22 (item -> EXEC items .)
+    SELECT          reduce using rule 22 (item -> EXEC items .)
+    LBrack          reduce using rule 22 (item -> EXEC items .)
+    FUNC            reduce using rule 22 (item -> EXEC items .)
+    PRINT           reduce using rule 22 (item -> EXEC items .)
+    PRINTLINE       reduce using rule 22 (item -> EXEC items .)
+    TRUE            reduce using rule 22 (item -> EXEC items .)
+    FALSE           reduce using rule 22 (item -> EXEC items .)
+    $end            reduce using rule 22 (item -> EXEC items .)
+    RBrack          reduce using rule 22 (item -> EXEC items .)
+    RPAREN          reduce using rule 22 (item -> EXEC items .)
 
 
 state 38
 
     (10) call -> item MATH . item
     (8) item -> MATH .
-    (26) atom -> MATH .
+    (27) atom -> MATH .
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! reduce/reduce conflict for $end resolved using rule 8 (item -> MATH .)
   ! reduce/reduce conflict for MATH resolved using rule 8 (item -> MATH .)
@@ -2039,46 +2056,46 @@ state 38
   ! RBrack          [ reduce using rule 8 (item -> MATH .) ]
   ! RPAREN          [ reduce using rule 8 (item -> MATH .) ]
   ! RCURLY          [ reduce using rule 8 (item -> MATH .) ]
-  ! $end            [ reduce using rule 26 (atom -> MATH .) ]
-  ! MATH            [ reduce using rule 26 (atom -> MATH .) ]
-  ! LPAREN          [ reduce using rule 26 (atom -> MATH .) ]
-  ! EXEC            [ reduce using rule 26 (atom -> MATH .) ]
-  ! DATE            [ reduce using rule 26 (atom -> MATH .) ]
-  ! NUM             [ reduce using rule 26 (atom -> MATH .) ]
-  ! TEXT            [ reduce using rule 26 (atom -> MATH .) ]
-  ! STRING          [ reduce using rule 26 (atom -> MATH .) ]
-  ! DOT             [ reduce using rule 26 (atom -> MATH .) ]
-  ! NIL             [ reduce using rule 26 (atom -> MATH .) ]
-  ! SELECT          [ reduce using rule 26 (atom -> MATH .) ]
-  ! LBrack          [ reduce using rule 26 (atom -> MATH .) ]
-  ! FUNC            [ reduce using rule 26 (atom -> MATH .) ]
-  ! PRINT           [ reduce using rule 26 (atom -> MATH .) ]
-  ! PRINTLINE       [ reduce using rule 26 (atom -> MATH .) ]
-  ! TRUE            [ reduce using rule 26 (atom -> MATH .) ]
-  ! FALSE           [ reduce using rule 26 (atom -> MATH .) ]
-  ! RBrack          [ reduce using rule 26 (atom -> MATH .) ]
-  ! RPAREN          [ reduce using rule 26 (atom -> MATH .) ]
-  ! RCURLY          [ reduce using rule 26 (atom -> MATH .) ]
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 27 (atom -> MATH .) ]
+  ! MATH            [ reduce using rule 27 (atom -> MATH .) ]
+  ! LPAREN          [ reduce using rule 27 (atom -> MATH .) ]
+  ! EXEC            [ reduce using rule 27 (atom -> MATH .) ]
+  ! DATE            [ reduce using rule 27 (atom -> MATH .) ]
+  ! NUM             [ reduce using rule 27 (atom -> MATH .) ]
+  ! TEXT            [ reduce using rule 27 (atom -> MATH .) ]
+  ! STRING          [ reduce using rule 27 (atom -> MATH .) ]
+  ! DOT             [ reduce using rule 27 (atom -> MATH .) ]
+  ! NIL             [ reduce using rule 27 (atom -> MATH .) ]
+  ! SELECT          [ reduce using rule 27 (atom -> MATH .) ]
+  ! LBrack          [ reduce using rule 27 (atom -> MATH .) ]
+  ! FUNC            [ reduce using rule 27 (atom -> MATH .) ]
+  ! PRINT           [ reduce using rule 27 (atom -> MATH .) ]
+  ! PRINTLINE       [ reduce using rule 27 (atom -> MATH .) ]
+  ! TRUE            [ reduce using rule 27 (atom -> MATH .) ]
+  ! FALSE           [ reduce using rule 27 (atom -> MATH .) ]
+  ! RBrack          [ reduce using rule 27 (atom -> MATH .) ]
+  ! RPAREN          [ reduce using rule 27 (atom -> MATH .) ]
+  ! RCURLY          [ reduce using rule 27 (atom -> MATH .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
   ! EXEC            [ reduce using rule 5 (empty -> .) ]
   ! DATE            [ reduce using rule 5 (empty -> .) ]
@@ -2131,7 +2148,7 @@ state 40
 
     (11) call -> TEXT Eq item .
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
@@ -2162,33 +2179,33 @@ state 40
 
 state 41
 
-    (14) call -> LBrack items RBrack .
+    (15) call -> LBrack items RBrack .
 
-    $end            reduce using rule 14 (call -> LBrack items RBrack .)
-    MATH            reduce using rule 14 (call -> LBrack items RBrack .)
-    LPAREN          reduce using rule 14 (call -> LBrack items RBrack .)
-    EXEC            reduce using rule 14 (call -> LBrack items RBrack .)
-    DATE            reduce using rule 14 (call -> LBrack items RBrack .)
-    NUM             reduce using rule 14 (call -> LBrack items RBrack .)
-    TEXT            reduce using rule 14 (call -> LBrack items RBrack .)
-    STRING          reduce using rule 14 (call -> LBrack items RBrack .)
-    DOT             reduce using rule 14 (call -> LBrack items RBrack .)
-    NIL             reduce using rule 14 (call -> LBrack items RBrack .)
-    SELECT          reduce using rule 14 (call -> LBrack items RBrack .)
-    LBrack          reduce using rule 14 (call -> LBrack items RBrack .)
-    FUNC            reduce using rule 14 (call -> LBrack items RBrack .)
-    PRINT           reduce using rule 14 (call -> LBrack items RBrack .)
-    PRINTLINE       reduce using rule 14 (call -> LBrack items RBrack .)
-    TRUE            reduce using rule 14 (call -> LBrack items RBrack .)
-    FALSE           reduce using rule 14 (call -> LBrack items RBrack .)
-    RBrack          reduce using rule 14 (call -> LBrack items RBrack .)
-    RPAREN          reduce using rule 14 (call -> LBrack items RBrack .)
-    RCURLY          reduce using rule 14 (call -> LBrack items RBrack .)
+    $end            reduce using rule 15 (call -> LBrack items RBrack .)
+    MATH            reduce using rule 15 (call -> LBrack items RBrack .)
+    LPAREN          reduce using rule 15 (call -> LBrack items RBrack .)
+    EXEC            reduce using rule 15 (call -> LBrack items RBrack .)
+    DATE            reduce using rule 15 (call -> LBrack items RBrack .)
+    NUM             reduce using rule 15 (call -> LBrack items RBrack .)
+    TEXT            reduce using rule 15 (call -> LBrack items RBrack .)
+    STRING          reduce using rule 15 (call -> LBrack items RBrack .)
+    DOT             reduce using rule 15 (call -> LBrack items RBrack .)
+    NIL             reduce using rule 15 (call -> LBrack items RBrack .)
+    SELECT          reduce using rule 15 (call -> LBrack items RBrack .)
+    LBrack          reduce using rule 15 (call -> LBrack items RBrack .)
+    FUNC            reduce using rule 15 (call -> LBrack items RBrack .)
+    PRINT           reduce using rule 15 (call -> LBrack items RBrack .)
+    PRINTLINE       reduce using rule 15 (call -> LBrack items RBrack .)
+    TRUE            reduce using rule 15 (call -> LBrack items RBrack .)
+    FALSE           reduce using rule 15 (call -> LBrack items RBrack .)
+    RBrack          reduce using rule 15 (call -> LBrack items RBrack .)
+    RPAREN          reduce using rule 15 (call -> LBrack items RBrack .)
+    RCURLY          reduce using rule 15 (call -> LBrack items RBrack .)
 
 
 state 42
 
-    (18) call -> item LPAREN items . RPAREN
+    (19) call -> item LPAREN items . RPAREN
 
     RPAREN          shift and go to state 48
 
@@ -2197,7 +2214,7 @@ state 43
 
     (10) call -> item MATH item .
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
@@ -2228,41 +2245,42 @@ state 43
 
 state 44
 
-    (15) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> FUNC item LPAREN . items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> item LPAREN . items RPAREN
+    (16) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> FUNC item LPAREN . items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> FUNC item LPAREN . items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> item LPAREN . items RPAREN
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -2329,23 +2347,23 @@ state 44
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
@@ -2356,35 +2374,35 @@ state 44
 
 state 45
 
-    (25) atom -> NUM DOT NUM .
+    (26) atom -> NUM DOT NUM .
 
-    LPAREN          reduce using rule 25 (atom -> NUM DOT NUM .)
-    MATH            reduce using rule 25 (atom -> NUM DOT NUM .)
-    $end            reduce using rule 25 (atom -> NUM DOT NUM .)
-    EXEC            reduce using rule 25 (atom -> NUM DOT NUM .)
-    DATE            reduce using rule 25 (atom -> NUM DOT NUM .)
-    NUM             reduce using rule 25 (atom -> NUM DOT NUM .)
-    TEXT            reduce using rule 25 (atom -> NUM DOT NUM .)
-    STRING          reduce using rule 25 (atom -> NUM DOT NUM .)
-    DOT             reduce using rule 25 (atom -> NUM DOT NUM .)
-    NIL             reduce using rule 25 (atom -> NUM DOT NUM .)
-    SELECT          reduce using rule 25 (atom -> NUM DOT NUM .)
-    LBrack          reduce using rule 25 (atom -> NUM DOT NUM .)
-    FUNC            reduce using rule 25 (atom -> NUM DOT NUM .)
-    PRINT           reduce using rule 25 (atom -> NUM DOT NUM .)
-    PRINTLINE       reduce using rule 25 (atom -> NUM DOT NUM .)
-    TRUE            reduce using rule 25 (atom -> NUM DOT NUM .)
-    FALSE           reduce using rule 25 (atom -> NUM DOT NUM .)
-    RBrack          reduce using rule 25 (atom -> NUM DOT NUM .)
-    RPAREN          reduce using rule 25 (atom -> NUM DOT NUM .)
-    RCURLY          reduce using rule 25 (atom -> NUM DOT NUM .)
+    LPAREN          reduce using rule 26 (atom -> NUM DOT NUM .)
+    MATH            reduce using rule 26 (atom -> NUM DOT NUM .)
+    $end            reduce using rule 26 (atom -> NUM DOT NUM .)
+    EXEC            reduce using rule 26 (atom -> NUM DOT NUM .)
+    DATE            reduce using rule 26 (atom -> NUM DOT NUM .)
+    NUM             reduce using rule 26 (atom -> NUM DOT NUM .)
+    TEXT            reduce using rule 26 (atom -> NUM DOT NUM .)
+    STRING          reduce using rule 26 (atom -> NUM DOT NUM .)
+    DOT             reduce using rule 26 (atom -> NUM DOT NUM .)
+    NIL             reduce using rule 26 (atom -> NUM DOT NUM .)
+    SELECT          reduce using rule 26 (atom -> NUM DOT NUM .)
+    LBrack          reduce using rule 26 (atom -> NUM DOT NUM .)
+    FUNC            reduce using rule 26 (atom -> NUM DOT NUM .)
+    PRINT           reduce using rule 26 (atom -> NUM DOT NUM .)
+    PRINTLINE       reduce using rule 26 (atom -> NUM DOT NUM .)
+    TRUE            reduce using rule 26 (atom -> NUM DOT NUM .)
+    FALSE           reduce using rule 26 (atom -> NUM DOT NUM .)
+    RBrack          reduce using rule 26 (atom -> NUM DOT NUM .)
+    RPAREN          reduce using rule 26 (atom -> NUM DOT NUM .)
+    RCURLY          reduce using rule 26 (atom -> NUM DOT NUM .)
 
 
 state 46
 
     (12) call -> SELECT ALL item .
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
@@ -2416,42 +2434,43 @@ state 46
 state 47
 
     (13) call -> SELECT NUM NUM . NUM NUM item
+    (14) call -> SELECT NUM NUM . NUM NUM item NUM LESS NUM AND NUM GREAT NUM
 
     NUM             shift and go to state 50
 
 
 state 48
 
-    (18) call -> item LPAREN items RPAREN .
+    (19) call -> item LPAREN items RPAREN .
 
-    $end            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    MATH            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    LPAREN          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    EXEC            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    DATE            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    NUM             reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    TEXT            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    STRING          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    DOT             reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    NIL             reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    SELECT          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    LBrack          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    FUNC            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    PRINT           reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    PRINTLINE       reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    TRUE            reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    FALSE           reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    RBrack          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    RPAREN          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    RCURLY          reduce using rule 18 (call -> item LPAREN items RPAREN .)
+    $end            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    MATH            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    LPAREN          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    EXEC            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    DATE            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    NUM             reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    TEXT            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    STRING          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    DOT             reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    NIL             reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    SELECT          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    LBrack          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    FUNC            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    PRINT           reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    PRINTLINE       reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    TRUE            reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    FALSE           reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    RBrack          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    RPAREN          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    RCURLY          reduce using rule 19 (call -> item LPAREN items RPAREN .)
 
 
 state 49
 
-    (15) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item RCURLY
-    (16) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> FUNC item LPAREN items . RPAREN LCURLY EXEC items RCURLY
-    (18) call -> item LPAREN items . RPAREN
+    (16) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item RCURLY
+    (17) call -> FUNC item LPAREN items . RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> FUNC item LPAREN items . RPAREN LCURLY EXEC items RCURLY
+    (19) call -> item LPAREN items . RPAREN
 
     RPAREN          shift and go to state 51
 
@@ -2459,54 +2478,57 @@ state 49
 state 50
 
     (13) call -> SELECT NUM NUM NUM . NUM item
+    (14) call -> SELECT NUM NUM NUM . NUM item NUM LESS NUM AND NUM GREAT NUM
 
     NUM             shift and go to state 52
 
 
 state 51
 
-    (15) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item RCURLY
-    (16) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item MATH item RCURLY
-    (17) call -> FUNC item LPAREN items RPAREN . LCURLY EXEC items RCURLY
-    (18) call -> item LPAREN items RPAREN .
+    (16) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item RCURLY
+    (17) call -> FUNC item LPAREN items RPAREN . LCURLY item MATH item MATH item RCURLY
+    (18) call -> FUNC item LPAREN items RPAREN . LCURLY EXEC items RCURLY
+    (19) call -> item LPAREN items RPAREN .
 
     LCURLY          shift and go to state 53
-    LPAREN          reduce using rule 18 (call -> item LPAREN items RPAREN .)
-    MATH            reduce using rule 18 (call -> item LPAREN items RPAREN .)
+    LPAREN          reduce using rule 19 (call -> item LPAREN items RPAREN .)
+    MATH            reduce using rule 19 (call -> item LPAREN items RPAREN .)
 
 
 state 52
 
     (13) call -> SELECT NUM NUM NUM NUM . item
+    (14) call -> SELECT NUM NUM NUM NUM . item NUM LESS NUM AND NUM GREAT NUM
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -2564,26 +2586,26 @@ state 52
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! $end            [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
-  ! RBrack          [ reduce using rule 30 (atom -> .) ]
-  ! RPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
+  ! $end            [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
+  ! RBrack          [ reduce using rule 31 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
   ! EXEC            [ reduce using rule 5 (empty -> .) ]
   ! DATE            [ reduce using rule 5 (empty -> .) ]
@@ -2608,38 +2630,39 @@ state 52
 
 state 53
 
-    (15) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item RCURLY
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item MATH item RCURLY
-    (17) call -> FUNC item LPAREN items RPAREN LCURLY . EXEC items RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item RCURLY
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY . item MATH item MATH item RCURLY
+    (18) call -> FUNC item LPAREN items RPAREN LCURLY . EXEC items RCURLY
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for MATH resolved as shift
@@ -2661,8 +2684,8 @@ state 53
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
 
     item                           shift and go to state 55
@@ -2674,15 +2697,16 @@ state 53
 state 54
 
     (13) call -> SELECT NUM NUM NUM NUM item .
+    (14) call -> SELECT NUM NUM NUM NUM item . NUM LESS NUM AND NUM GREAT NUM
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
+  ! shift/reduce conflict for NUM resolved as shift
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
     $end            reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     EXEC            reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     DATE            reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
-    NUM             reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     TEXT            reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     STRING          reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     DOT             reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
@@ -2697,59 +2721,62 @@ state 54
     RBrack          reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     RPAREN          reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
     RCURLY          reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .)
+    NUM             shift and go to state 57
     MATH            shift and go to state 32
     LPAREN          shift and go to state 31
 
   ! MATH            [ reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .) ]
   ! LPAREN          [ reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .) ]
+  ! NUM             [ reduce using rule 13 (call -> SELECT NUM NUM NUM NUM item .) ]
 
 
 state 55
 
-    (15) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item RCURLY
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item MATH item RCURLY
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item RCURLY
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item . MATH item MATH item RCURLY
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
-    MATH            shift and go to state 57
+    MATH            shift and go to state 58
     LPAREN          shift and go to state 31
 
 
 state 56
 
-    (17) call -> FUNC item LPAREN items RPAREN LCURLY EXEC . items RCURLY
-    (21) item -> EXEC . items
+    (18) call -> FUNC item LPAREN items RPAREN LCURLY EXEC . items RCURLY
+    (22) item -> EXEC . items
     (3) items -> . item items
     (4) items -> . empty
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
+    (22) item -> . EXEC items
+    (23) item -> . DATE
     (5) empty -> .
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for EXEC resolved as shift
@@ -2816,65 +2843,73 @@ state 56
   ! PRINTLINE       [ reduce using rule 5 (empty -> .) ]
   ! TRUE            [ reduce using rule 5 (empty -> .) ]
   ! FALSE           [ reduce using rule 5 (empty -> .) ]
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
-  ! EXEC            [ reduce using rule 30 (atom -> .) ]
-  ! DATE            [ reduce using rule 30 (atom -> .) ]
-  ! NUM             [ reduce using rule 30 (atom -> .) ]
-  ! TEXT            [ reduce using rule 30 (atom -> .) ]
-  ! STRING          [ reduce using rule 30 (atom -> .) ]
-  ! DOT             [ reduce using rule 30 (atom -> .) ]
-  ! NIL             [ reduce using rule 30 (atom -> .) ]
-  ! SELECT          [ reduce using rule 30 (atom -> .) ]
-  ! LBrack          [ reduce using rule 30 (atom -> .) ]
-  ! FUNC            [ reduce using rule 30 (atom -> .) ]
-  ! PRINT           [ reduce using rule 30 (atom -> .) ]
-  ! PRINTLINE       [ reduce using rule 30 (atom -> .) ]
-  ! TRUE            [ reduce using rule 30 (atom -> .) ]
-  ! FALSE           [ reduce using rule 30 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
+  ! EXEC            [ reduce using rule 31 (atom -> .) ]
+  ! DATE            [ reduce using rule 31 (atom -> .) ]
+  ! NUM             [ reduce using rule 31 (atom -> .) ]
+  ! TEXT            [ reduce using rule 31 (atom -> .) ]
+  ! STRING          [ reduce using rule 31 (atom -> .) ]
+  ! DOT             [ reduce using rule 31 (atom -> .) ]
+  ! NIL             [ reduce using rule 31 (atom -> .) ]
+  ! SELECT          [ reduce using rule 31 (atom -> .) ]
+  ! LBrack          [ reduce using rule 31 (atom -> .) ]
+  ! FUNC            [ reduce using rule 31 (atom -> .) ]
+  ! PRINT           [ reduce using rule 31 (atom -> .) ]
+  ! PRINTLINE       [ reduce using rule 31 (atom -> .) ]
+  ! TRUE            [ reduce using rule 31 (atom -> .) ]
+  ! FALSE           [ reduce using rule 31 (atom -> .) ]
 
     item                           shift and go to state 23
     bool                           shift and go to state 2
     empty                          shift and go to state 22
     call                           shift and go to state 25
     atom                           shift and go to state 26
-    items                          shift and go to state 58
+    items                          shift and go to state 59
 
 state 57
 
-    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item RCURLY
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item MATH item RCURLY
+    (14) call -> SELECT NUM NUM NUM NUM item NUM . LESS NUM AND NUM GREAT NUM
+
+    LESS            shift and go to state 60
+
+
+state 58
+
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item RCURLY
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item MATH . item MATH item RCURLY
     (10) call -> item MATH . item
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! reduce/reduce conflict for RCURLY resolved using rule 5 (empty -> .)
@@ -2898,104 +2933,119 @@ state 57
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
 
-    item                           shift and go to state 59
+    item                           shift and go to state 61
     bool                           shift and go to state 2
     empty                          shift and go to state 6
     call                           shift and go to state 25
     atom                           shift and go to state 26
 
-state 58
-
-    (17) call -> FUNC item LPAREN items RPAREN LCURLY EXEC items . RCURLY
-    (21) item -> EXEC items .
-
-    RCURLY          shift and go to state 60
-    MATH            reduce using rule 21 (item -> EXEC items .)
-    LPAREN          reduce using rule 21 (item -> EXEC items .)
-
-
 state 59
 
-    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . RCURLY
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . MATH item RCURLY
+    (18) call -> FUNC item LPAREN items RPAREN LCURLY EXEC items . RCURLY
+    (22) item -> EXEC items .
+
+    RCURLY          shift and go to state 62
+    MATH            reduce using rule 22 (item -> EXEC items .)
+    LPAREN          reduce using rule 22 (item -> EXEC items .)
+
+
+state 60
+
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS . NUM AND NUM GREAT NUM
+
+    NUM             shift and go to state 63
+
+
+state 61
+
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . RCURLY
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item . MATH item RCURLY
     (10) call -> item MATH item .
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
-    RCURLY          shift and go to state 62
-    MATH            shift and go to state 61
+    RCURLY          shift and go to state 65
+    MATH            shift and go to state 64
     LPAREN          shift and go to state 31
 
   ! MATH            [ reduce using rule 10 (call -> item MATH item .) ]
   ! LPAREN          [ reduce using rule 10 (call -> item MATH item .) ]
 
 
-state 60
+state 62
 
-    (17) call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .
+    (18) call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .
 
-    $end            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    MATH            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    LPAREN          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    EXEC            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    DATE            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    NUM             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    TEXT            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    STRING          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    DOT             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    NIL             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    SELECT          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    LBrack          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    FUNC            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    PRINT           reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    PRINTLINE       reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    TRUE            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    FALSE           reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    RBrack          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    RPAREN          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
-    RCURLY          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    $end            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    MATH            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    LPAREN          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    EXEC            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    DATE            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    NUM             reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    TEXT            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    STRING          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    DOT             reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    NIL             reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    SELECT          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    LBrack          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    FUNC            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    PRINT           reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    PRINTLINE       reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    TRUE            reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    FALSE           reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    RBrack          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    RPAREN          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
+    RCURLY          reduce using rule 18 (call -> FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY .)
 
 
-state 61
+state 63
 
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH . item RCURLY
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS NUM . AND NUM GREAT NUM
+
+    AND             shift and go to state 66
+
+
+state 64
+
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH . item RCURLY
     (10) call -> item MATH . item
     (6) item -> . atom
     (7) item -> . call
     (8) item -> . MATH
     (9) item -> . empty
-    (21) item -> . EXEC items
-    (22) item -> . DATE
-    (23) atom -> . bool
-    (24) atom -> . NUM
-    (25) atom -> . NUM DOT NUM
-    (26) atom -> . MATH
-    (27) atom -> . TEXT
-    (28) atom -> . STRING
-    (29) atom -> . DOT
-    (30) atom -> .
-    (33) atom -> . NIL
+    (22) item -> . EXEC items
+    (23) item -> . DATE
+    (24) atom -> . bool
+    (25) atom -> . NUM
+    (26) atom -> . NUM DOT NUM
+    (27) atom -> . MATH
+    (28) atom -> . TEXT
+    (29) atom -> . STRING
+    (30) atom -> . DOT
+    (31) atom -> .
+    (34) atom -> . NIL
     (10) call -> . item MATH item
     (11) call -> . TEXT Eq item
     (12) call -> . SELECT ALL item
     (13) call -> . SELECT NUM NUM NUM NUM item
-    (14) call -> . LBrack items RBrack
-    (15) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
-    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
-    (17) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
-    (18) call -> . item LPAREN items RPAREN
-    (19) call -> . PRINT items
-    (20) call -> . PRINTLINE STATEMENT
+    (14) call -> . SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM
+    (15) call -> . LBrack items RBrack
+    (16) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY
+    (17) call -> . FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY
+    (18) call -> . FUNC item LPAREN items RPAREN LCURLY EXEC items RCURLY
+    (19) call -> . item LPAREN items RPAREN
+    (20) call -> . PRINT items
+    (21) call -> . PRINTLINE STATEMENT
     (5) empty -> .
-    (31) bool -> . TRUE
-    (32) bool -> . FALSE
+    (32) bool -> . TRUE
+    (33) bool -> . FALSE
 
   ! shift/reduce conflict for MATH resolved as shift
   ! reduce/reduce conflict for RCURLY resolved using rule 5 (empty -> .)
@@ -3019,54 +3069,61 @@ state 61
     TRUE            shift and go to state 12
     FALSE           shift and go to state 20
 
-  ! RCURLY          [ reduce using rule 30 (atom -> .) ]
-  ! MATH            [ reduce using rule 30 (atom -> .) ]
-  ! LPAREN          [ reduce using rule 30 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 31 (atom -> .) ]
+  ! MATH            [ reduce using rule 31 (atom -> .) ]
+  ! LPAREN          [ reduce using rule 31 (atom -> .) ]
   ! MATH            [ reduce using rule 5 (empty -> .) ]
 
-    item                           shift and go to state 63
+    item                           shift and go to state 67
     bool                           shift and go to state 2
     empty                          shift and go to state 6
     call                           shift and go to state 25
     atom                           shift and go to state 26
 
-state 62
+state 65
 
-    (15) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .
+    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .
 
-    $end            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    MATH            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    LPAREN          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    EXEC            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    DATE            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    NUM             reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    TEXT            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    STRING          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    DOT             reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    NIL             reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    SELECT          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    LBrack          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    FUNC            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    PRINT           reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    PRINTLINE       reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    TRUE            reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    FALSE           reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    RBrack          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    RPAREN          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
-    RCURLY          reduce using rule 15 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    $end            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    MATH            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    LPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    EXEC            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    DATE            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    NUM             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    TEXT            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    STRING          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    DOT             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    NIL             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    SELECT          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    LBrack          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    FUNC            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    PRINT           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    PRINTLINE       reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    TRUE            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    FALSE           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    RBrack          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    RPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
+    RCURLY          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item RCURLY .)
 
 
-state 63
+state 66
 
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item . RCURLY
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND . NUM GREAT NUM
+
+    NUM             shift and go to state 68
+
+
+state 67
+
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item . RCURLY
     (10) call -> item MATH item .
     (10) call -> item . MATH item
-    (18) call -> item . LPAREN items RPAREN
+    (19) call -> item . LPAREN items RPAREN
 
   ! shift/reduce conflict for RCURLY resolved as shift
   ! shift/reduce conflict for MATH resolved as shift
   ! shift/reduce conflict for LPAREN resolved as shift
-    RCURLY          shift and go to state 64
+    RCURLY          shift and go to state 69
     MATH            shift and go to state 32
     LPAREN          shift and go to state 31
 
@@ -3075,30 +3132,70 @@ state 63
   ! LPAREN          [ reduce using rule 10 (call -> item MATH item .) ]
 
 
-state 64
+state 68
 
-    (16) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM . GREAT NUM
 
-    $end            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    MATH            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    LPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    EXEC            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    DATE            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    NUM             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    TEXT            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    STRING          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    DOT             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    NIL             reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    SELECT          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    LBrack          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    FUNC            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    PRINT           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    PRINTLINE       reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    TRUE            reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    FALSE           reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    RBrack          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    RPAREN          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
-    RCURLY          reduce using rule 16 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    GREAT           shift and go to state 70
+
+
+state 69
+
+    (17) call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .
+
+    $end            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    MATH            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    LPAREN          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    EXEC            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    DATE            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    NUM             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    TEXT            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    STRING          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    DOT             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    NIL             reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    SELECT          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    LBrack          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    FUNC            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    PRINT           reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    PRINTLINE       reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    TRUE            reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    FALSE           reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    RBrack          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    RPAREN          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+    RCURLY          reduce using rule 17 (call -> FUNC item LPAREN items RPAREN LCURLY item MATH item MATH item RCURLY .)
+
+
+state 70
+
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT . NUM
+
+    NUM             shift and go to state 71
+
+
+state 71
+
+    (14) call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .
+
+    $end            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    MATH            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    LPAREN          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    EXEC            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    DATE            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    NUM             reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    TEXT            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    STRING          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    DOT             reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    NIL             reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    SELECT          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    LBrack          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    FUNC            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    PRINT           reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    PRINTLINE       reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    TRUE            reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    FALSE           reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    RBrack          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    RPAREN          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
+    RCURLY          reduce using rule 14 (call -> SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -3397,6 +3494,7 @@ WARNING: shift/reduce conflict for TRUE in state 52 resolved as shift
 WARNING: shift/reduce conflict for FALSE in state 52 resolved as shift
 WARNING: shift/reduce conflict for MATH in state 53 resolved as shift
 WARNING: shift/reduce conflict for MATH in state 53 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 54 resolved as shift
 WARNING: shift/reduce conflict for MATH in state 54 resolved as shift
 WARNING: shift/reduce conflict for LPAREN in state 54 resolved as shift
 WARNING: shift/reduce conflict for MATH in state 56 resolved as shift
@@ -3421,15 +3519,15 @@ WARNING: shift/reduce conflict for PRINT in state 56 resolved as shift
 WARNING: shift/reduce conflict for PRINTLINE in state 56 resolved as shift
 WARNING: shift/reduce conflict for TRUE in state 56 resolved as shift
 WARNING: shift/reduce conflict for FALSE in state 56 resolved as shift
-WARNING: shift/reduce conflict for MATH in state 57 resolved as shift
-WARNING: shift/reduce conflict for MATH in state 57 resolved as shift
-WARNING: shift/reduce conflict for MATH in state 59 resolved as shift
-WARNING: shift/reduce conflict for LPAREN in state 59 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 58 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 58 resolved as shift
 WARNING: shift/reduce conflict for MATH in state 61 resolved as shift
-WARNING: shift/reduce conflict for MATH in state 61 resolved as shift
-WARNING: shift/reduce conflict for RCURLY in state 63 resolved as shift
-WARNING: shift/reduce conflict for MATH in state 63 resolved as shift
-WARNING: shift/reduce conflict for LPAREN in state 63 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 61 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 64 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 64 resolved as shift
+WARNING: shift/reduce conflict for RCURLY in state 67 resolved as shift
+WARNING: shift/reduce conflict for MATH in state 67 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 67 resolved as shift
 WARNING: reduce/reduce conflict in state 0 resolved using rule (empty -> <empty>)
 WARNING: rejected rule (atom -> <empty>) in state 0
 WARNING: reduce/reduce conflict in state 1 resolved using rule (empty -> <empty>)
@@ -3470,7 +3568,7 @@ WARNING: reduce/reduce conflict in state 53 resolved using rule (empty -> <empty
 WARNING: rejected rule (atom -> <empty>) in state 53
 WARNING: reduce/reduce conflict in state 56 resolved using rule (empty -> <empty>)
 WARNING: rejected rule (atom -> <empty>) in state 56
-WARNING: reduce/reduce conflict in state 57 resolved using rule (empty -> <empty>)
-WARNING: rejected rule (atom -> <empty>) in state 57
-WARNING: reduce/reduce conflict in state 61 resolved using rule (empty -> <empty>)
-WARNING: rejected rule (atom -> <empty>) in state 61
+WARNING: reduce/reduce conflict in state 58 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 58
+WARNING: reduce/reduce conflict in state 64 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 64

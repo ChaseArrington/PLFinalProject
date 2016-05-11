@@ -155,14 +155,29 @@ def p_callLet(p):
 
 def p_selectList(p):
     '''call : SELECT ALL item
-            | SELECT NUM NUM NUM NUM item'''
-    a = []
+            | SELECT NUM NUM NUM NUM item
+            | SELECT NUM NUM NUM NUM item NUM LESS NUM AND NUM GREAT NUM'''
     if p[2] == 'all':
+        print "\nselect * from " + str(p[3]) + ': ,' + str(p[3])
         p[0] = vars[p[3]]
     else:
-        for i in vars[p[6]][1:]:
-            a.append([i[p[2]],i[p[3]],i[p[4]],i[p[5]]])
-        p[0] = a
+        if len(p) == 7:
+            a=[]
+            for i in vars[p[6]][1:]:
+                a.append([i[p[2]],i[p[3]],i[p[4]],i[p[5]]])
+            print "\n select "+str(vars[p[6]][0][p[2]])+', '+str(vars[p[6]][0][p[3]])+', '\
+                  +str(vars[p[6]][0][p[4]])+', '+str(vars[p[6]][0][p[5]])+' from '+str(p[6])+': '
+            p[0] = a
+        if len(p) == 14:
+            b=[]
+            if p[8] == '<' and p[12] == '>':
+                for i in vars[p[6]][1:]:
+                    if i[p[7]] < p[9] and i[p[11]] > p[13]:
+                        b.append([i[p[2]],i[p[3]],i[p[4]],i[p[5]]])
+                print "\n select "+str(vars[p[6]][0][p[2]])+', '+str(vars[p[6]][0][p[3]])+', '\
+                      +str(vars[p[6]][0][p[4]])+', '+str(vars[p[6]][0][p[5]])+' from '+str(p[6])+' where '+\
+                      str(vars[p[6]][0][p[7]]), p[8], p[9], p[10], str(vars[p[6]][0][p[7]]),p[12], p[13]
+                p[0] = b
 
 def p_list(p):
     'call : LBrack items RBrack'

@@ -8,7 +8,8 @@ import ply.lex as lex
 
 # List of token names.   
 tokens = ('NUM', 'LPAREN', 'RPAREN','NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'LCURLY', 'RCURLY',
-          'FUNC', 'PRINT', 'STRING', 'LBrack', 'RBrack', 'DOT', 'DATE', 'EXEC','PRINTLINE','STATEMENT','ALL','SELECT')
+          'FUNC', 'PRINT', 'STRING', 'LBrack', 'RBrack', 'DOT', 'DATE', 'EXEC','PRINTLINE','STATEMENT','ALL','SELECT',
+          'GREAT', 'LESS','AND')
 
 # Reserved words
 reserved = {
@@ -20,6 +21,7 @@ reserved = {
     'printLine' : 'PRINTLINE',
     'select' : 'SELECT',
     'all' : 'ALL',
+    'and' : 'AND',
 }
 
 # Regular expression rules for simple tokens
@@ -35,6 +37,8 @@ t_LCURLY = r'{'
 t_RCURLY = r'}'
 t_STRING = r'\'[a-zA-Z ]+\''
 t_DOT = r'\.'
+t_GREAT = r'>'
+t_LESS = r'<'
 
 def t_STATEMENT(t):
     r'@.*'
