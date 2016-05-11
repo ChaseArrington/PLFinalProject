@@ -82,7 +82,7 @@ def eval_maths(l):
         if l[1] == '/':
             return l[0] / l[2]
         return 'null'
-    return 'invalid'
+    return l
 
 def is_list(l):
     return type(l) == type([])
@@ -216,10 +216,28 @@ def p_callFunc(p):
             funString += str(i)
         funString += '**'
         p[0] = funString
-    else:
-        print 'nope nope nope'
+    #else:
+    #    print 'nope nope nope'
 
-
+def p_map(p):
+    'call : MAP items'
+    #print p[2]
+    l = []
+    if is_list(p[2][1]) == False:
+        if p[2][1]in vars:
+            p[2][1] = vars[p[2][1]]
+        else:
+            p[0] = 'invalid'
+            return p[0]
+    l = p[2][1]
+    #print l
+    f = p[2][2]
+    #print f
+    for i in range (0, len(l)):
+        f[0] = l[i]
+        f[2] = int(f[2])
+        l[i] = eval_maths(f)
+    p[0] = l
 
 def p_print(p):
     'call : PRINT items'
@@ -236,7 +254,7 @@ def p_printLine(p):
     print '\n' + s[1:]
 
 def p_exec(p):
-    'item : EXEC items'
+    'call : EXEC items'
     from java.lang import Math
     s = ''
     for i in p[2]:
