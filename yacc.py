@@ -153,6 +153,17 @@ def p_callLet(p):
     vars[p[1]] = p[3]
     p[0] = p[3]
 
+def p_selectList(p):
+    '''call : SELECT ALL item
+            | SELECT NUM NUM NUM NUM item'''
+    a = []
+    if p[2] == 'all':
+        p[0] = vars[p[3]]
+    else:
+        for i in vars[p[6]][1:]:
+            a.append([i[p[2]],i[p[3]],i[p[4]],i[p[5]]])
+        p[0] = a
+
 def p_list(p):
     'call : LBrack items RBrack'
     p[0] = p[2]

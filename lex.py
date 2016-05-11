@@ -8,7 +8,7 @@ import ply.lex as lex
 
 # List of token names.   
 tokens = ('NUM', 'LPAREN', 'RPAREN','NIL', 'TRUE', 'FALSE', 'TEXT', 'MATH', 'Eq', 'LCURLY', 'RCURLY',
-          'FUNC', 'PRINT', 'STRING', 'LBrack', 'RBrack', 'DOT', 'DATE', 'EXEC','PRINTLINE','STATEMENT')
+          'FUNC', 'PRINT', 'STRING', 'LBrack', 'RBrack', 'DOT', 'DATE', 'EXEC','PRINTLINE','STATEMENT','ALL','SELECT')
 
 # Reserved words
 reserved = {
@@ -18,6 +18,8 @@ reserved = {
     'print' : 'PRINT',
     'exec' : 'EXEC',
     'printLine' : 'PRINTLINE',
+    'select' : 'SELECT',
+    'all' : 'ALL',
 }
 
 # Regular expression rules for simple tokens
