@@ -32,9 +32,6 @@ class function(object):
         return cf
     run = f(1)
 
-#s1 = function()
-
-
 def _print(l):
     print lisp_str(l[0])
 
@@ -190,12 +187,9 @@ def p_callFunc(p):
             funString += str(i)
         funString += '**'
         p[0] = funString
-    #else:
-    #    print 'nope nope nope'
 
 def p_map(p):
     'call : MAP items'
-    #print p[2]
     l = []
     if is_list(p[2][1]) == False:
         if p[2][1]in vars:
@@ -204,9 +198,7 @@ def p_map(p):
             p[0] = 'invalid'
             return p[0]
     l = p[2][1]
-    #print l
     f = p[2][2]
-    #print f
     for i in range (0, len(l)):
         f[0] = l[i]
         f[2] = int(f[2])
@@ -292,8 +284,6 @@ def p_error(p):
     print "Syntax error!! ",p
 
 # Build the parser
-# Use this if you want to build the parser using SLR instead of LALR
-# yacc.yacc(method="SLR")
 yacc.yacc()
 
 

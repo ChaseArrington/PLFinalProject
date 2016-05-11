@@ -11,5 +11,3 @@ select all s_dept
 select 1 2 5 6 s_emp
 
 select 1 2 5 6 s_emp 6 < 1500 and 8 > 40
-
-printLine @'\nselect last_name, first_name, title, salary from s_emp where salary < 1500 and dept_id > 40 order by last_name: ', sorted([[i[1], i[2], i[6], i[7]] for i in s_emp[1::] if i[7] > 1500 and i[9] > 40], key = lambda x: x[0])
